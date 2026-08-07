@@ -113,7 +113,15 @@ scenes:
 ```
 
 最初の変更では`text`だけを書き換えます。保存後のsourceが正常なら、previewは変更前の実行を安全な
-位置で止め、正式UIで提供される再開位置を表示します。
+位置で止め、reload status buttonへ最終reload時刻を表示します。buttonを開いた第1段階では、先頭、
+現在のscene、現在のactionから再開位置を選びます。actionから安全に再開できない場合は、scene、先頭の
+順でfallbackし、選択した位置と実際の再開位置を区別して示します。
+
+第2段階では、今回だけreload、reloadして次回設定も保存、reloadせず次回設定だけ保存、cancelの適用範囲を
+選びます。第1段階の選択だけではreloadせず、cancel、close、Escapeでも再開設定を変更しません。
+
+同じUIでstatus buttonの優先表示位置を、上下左右の中央を含む外周8方向から選べます。camera control等と
+重なる場合は最も近い空き位置へ移動し、衝突がなくなると優先位置へ戻ります。
 
 <!-- screenshot:C-05 -->
 
@@ -159,7 +167,10 @@ starterへ同梱された検証済みpose modelをsceneから参照し、ポー�
 
 このstepではモデルの学習、remote URLからの取得、Scratch変数やblockによる認識状態の変更は扱いません。
 
-「遊ぶ」の認識画面と同じ状態は`P-05`を再利用します。
+productionの認識状態は「遊ぶ」の`P-05`を参照します。ここではWeb Preview固有の`C-10`を取得し、
+pose feedbackとcamera controlが表示された状態でも、reload status buttonがcontrolと重ならないことを
+確認します。撮影fixtureでは右上を優先位置とし、右上のcamera controlを避けて上中央へ解決される状態を
+使用します。
 
 <!-- screenshot:C-10 -->
 

@@ -3,7 +3,7 @@
 Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)で提供します。
 
 文書状態: DSL 4.0リリース前draft\
-関連Issue: [tmpose-kamishibai-docs #31](https://github.com/kubohiroya/tmpose-kamishibai-docs/issues/31)
+関連Issue: [準備 #31](https://github.com/kubohiroya/tmpose-kamishibai-docs/issues/31) / [実装追従 #34](https://github.com/kubohiroya/tmpose-kamishibai-docs/issues/34)
 
 このディレクトリは、DSL 4.0の正式リリース後に公開するチュートリアルの本文骨格、
 スクリーンショット台帳、サイト共通AppBar契約を保持します。リリース前に確定できない
@@ -59,6 +59,21 @@ Teachable Machineでのモデル作成は初版の対象外とし、検証済み
 YAML、command、terminal出力は画像化せず、コピー可能なcode blockで掲載します。画像は画面操作、
 正常状態、失敗状態を示すために使用します。
 
+### 実装追跡
+
+2026-08-07時点では、上流のWeb Preview live reload、transactional asset live reload、共通reload
+overlay、pose feedback、camera controlが
+[`e1696f6`](https://github.com/kubohiroya/tmpose-kamishibai/commit/e1696f64f414baa3b80c1be2fdad32164efe1bec)
+までに実装されています。`screenshots.json`の`progressStatus`は、この上流実装の有無と残作業を
+`implemented`、`partial`、`blocked`で区別します。`implemented`でも、公開version、starter、最終UI、
+撮影環境が揃うまでは`ready: false`を維持します。
+
+reload overlayは上流の
+[撮影引き継ぎ契約](https://github.com/kubohiroya/tmpose-kamishibai/blob/e1696f64f414baa3b80c1be2fdad32164efe1bec/docs/design/dsl-4-preview-reload-overlay.md#tutorial-screenshot-handoff)と
+[fixture](https://github.com/kubohiroya/tmpose-kamishibai/blob/e1696f64f414baa3b80c1be2fdad32164efe1bec/test/fixtures/dsl4/preview-reload-overlay-screenshot.json)
+を正本にします。1280 × 720 CSS px、DPR 1、`ja-JP`、reduced motionで、同じfixtureをWeb Previewと
+CLI browser previewに使用します。local source pathは画像へ表示しません。
+
 想定する保存先は次のとおりです。
 
 ```text
@@ -89,6 +104,7 @@ docs/images/tutorials/dsl4/create/
 - Standard Web playerとapp shellの配置、状態、文言
 - チュートリアル用サンプルURLとstarter artifact
 - Web Previewのdirectory選択、YAML／additive asset live reload、診断UI
+- 2段階reload dialogの再開位置、適用範囲、8方向anchorと衝突回避
 - pose feedback presenter
 - camera preview、mirroring、camera選択UIの採用範囲
 - `validate`と`build`の正式CLI
@@ -113,5 +129,6 @@ docs/images/tutorials/dsl4/create/
 - [poseModel asset lifecycle #327](https://github.com/kubohiroya/tmpose-kamishibai/issues/327)
 - [Web PreviewとYAML live reload #390](https://github.com/kubohiroya/tmpose-kamishibai/issues/390)
 - [local assetの追加・内容更新live reload #391](https://github.com/kubohiroya/tmpose-kamishibai/issues/391)
+- [共通reload overlay #394](https://github.com/kubohiroya/tmpose-kamishibai/issues/394)
 - [pose認識進捗表示 #383](https://github.com/kubohiroya/tmpose-kamishibai/issues/383)
 - [camera preview操作UI #388](https://github.com/kubohiroya/tmpose-kamishibai/issues/388)

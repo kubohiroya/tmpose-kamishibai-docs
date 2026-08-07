@@ -1,12 +1,27 @@
 {
-  "formatVersion": 1,
+  "formatVersion": 2,
   "status": "blocked-until-dsl4-release",
   "targetDslVersion": "4.0",
+  "implementationBaseline": {
+    "repository": "kubohiroya/tmpose-kamishibai",
+    "commit": "e1696f64f414baa3b80c1be2fdad32164efe1bec",
+    "reviewedAt": "2026-08-07",
+    "screenshotContract": {
+      "design": "https://github.com/kubohiroya/tmpose-kamishibai/blob/e1696f64f414baa3b80c1be2fdad32164efe1bec/docs/design/dsl-4-preview-reload-overlay.md#tutorial-screenshot-handoff",
+      "fixture": "https://github.com/kubohiroya/tmpose-kamishibai/blob/e1696f64f414baa3b80c1be2fdad32164efe1bec/test/fixtures/dsl4/preview-reload-overlay-screenshot.json"
+    }
+  },
   "capturePolicy": {
     "fileRoot": "docs/images/tutorials/dsl4",
     "format": "png",
     "sourceTextPresentation": "copyable-code-block",
     "cameraSubject": "consenting-adult",
+    "viewport": {"width": 1280, "height": 720},
+    "deviceScaleFactor": 1,
+    "locale": "ja-JP",
+    "reducedMotion": true,
+    "acknowledgedAt": "2026-08-07T03:04:05.000Z",
+    "sourcePathsVisible": false,
     "recordForEachCapture": [
       "application version",
       "source commit",
@@ -20,58 +35,102 @@
     {
       "id": "dsl4-release",
       "ready": false,
+      "progressStatus": "blocked",
       "description": "DSL 4.0の公開versionと対象commitが固定されている",
-      "dependencies": ["https://github.com/kubohiroya/tmpose-kamishibai/issues/266"]
+      "dependencies": ["https://github.com/kubohiroya/tmpose-kamishibai/issues/266"],
+      "remaining": ["DSL 4.0の正式releaseとtagを固定する"]
     },
     {
       "id": "tutorial-sample",
       "ready": false,
+      "progressStatus": "blocked",
       "description": "最小作品、starter、Web版、SB3、公開URL、integrityが固定されている",
-      "dependencies": ["kubohiroya/tmpose-kamishibai-samples: follow-up issue required"]
+      "dependencies": ["kubohiroya/tmpose-kamishibai-samples: follow-up issue required"],
+      "remaining": ["sample repositoryでstarter、Web版、SB3、integrityを公開する"]
     },
     {
       "id": "app-shell",
       "ready": false,
+      "progressStatus": "partial",
       "description": "Standard Web playerとapp shellの配置、状態、文言が固定されている",
-      "dependencies": ["https://github.com/kubohiroya/tmpose-kamishibai/issues/265"]
+      "dependencies": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/issues/265",
+        "https://github.com/kubohiroya/tmpose-kamishibai/issues/336"
+      ],
+      "evidence": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/commit/e1696f64f414baa3b80c1be2fdad32164efe1bec"
+      ],
+      "remaining": ["release版の最終配置、文言、download導線を固定する"]
     },
     {
       "id": "preview-flow",
       "ready": false,
+      "progressStatus": "implemented",
       "description": "development preview、reload選択、診断UIが固定されている",
       "dependencies": [
         "https://github.com/kubohiroya/tmpose-kamishibai/issues/258",
         "https://github.com/kubohiroya/tmpose-kamishibai/issues/266",
         "https://github.com/kubohiroya/tmpose-kamishibai/issues/390",
-        "https://github.com/kubohiroya/tmpose-kamishibai/issues/391"
-      ]
+        "https://github.com/kubohiroya/tmpose-kamishibai/issues/391",
+        "https://github.com/kubohiroya/tmpose-kamishibai/issues/394"
+      ],
+      "evidence": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/commit/3668573",
+        "https://github.com/kubohiroya/tmpose-kamishibai/commit/c0921e4",
+        "https://github.com/kubohiroya/tmpose-kamishibai/commit/315c5e7"
+      ],
+      "remaining": ["release成果物とstarter上で最終UIを追試する"]
     },
     {
       "id": "pose-feedback",
       "ready": false,
+      "progressStatus": "implemented",
       "description": "ポーズ認識度、チャージ、状態feedbackの正式表示が固定されている",
-      "dependencies": ["https://github.com/kubohiroya/tmpose-kamishibai/issues/383"]
+      "dependencies": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/issues/383",
+        "https://github.com/kubohiroya/tmpose-kamishibai/issues/413"
+      ],
+      "evidence": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/commit/e1696f64f414baa3b80c1be2fdad32164efe1bec"
+      ],
+      "remaining": ["release版sampleの表示文言と状態遷移を固定する"]
     },
     {
       "id": "camera-controls",
       "ready": false,
+      "progressStatus": "implemented",
       "description": "camera preview、mirroring、camera選択UIの採用範囲が固定されている",
-      "dependencies": ["https://github.com/kubohiroya/tmpose-kamishibai/issues/388"]
+      "dependencies": ["https://github.com/kubohiroya/tmpose-kamishibai/issues/388"],
+      "evidence": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/commit/1af226f",
+        "https://github.com/kubohiroya/tmpose-kamishibai/blob/e1696f64f414baa3b80c1be2fdad32164efe1bec/test/fixtures/dsl4/preview-reload-overlay-screenshot.json"
+      ],
+      "remaining": ["release版sampleでcamera controlとの衝突回避を追試する"]
     },
     {
       "id": "cli-contract",
       "ready": false,
+      "progressStatus": "partial",
       "description": "validate、preview、buildの正式CLIとresource limitが固定されている",
       "dependencies": [
         "https://github.com/kubohiroya/tmpose-kamishibai/issues/258",
         "https://github.com/kubohiroya/tmpose-kamishibai/issues/266"
-      ]
+      ],
+      "evidence": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/blob/e1696f64f414baa3b80c1be2fdad32164efe1bec/test/fixtures/dsl4/preview-reload-overlay-screenshot.json"
+      ],
+      "remaining": ["validate、preview、buildのrelease CLIとresource limitを固定する"]
     },
     {
       "id": "capture-environment",
       "ready": false,
+      "progressStatus": "partial",
       "description": "撮影同意、背景、個人情報除去、browser、viewport、DPRが固定されている",
-      "dependencies": []
+      "dependencies": [],
+      "evidence": [
+        "https://github.com/kubohiroya/tmpose-kamishibai/blob/e1696f64f414baa3b80c1be2fdad32164efe1bec/test/fixtures/dsl4/preview-reload-overlay-screenshot.json"
+      ],
+      "remaining": ["browser version、撮影同意、背景、個人情報除去を記録する"]
     }
   ],
   "captures": [
@@ -233,6 +292,7 @@
       "status": "blocked",
       "surface": "development preview",
       "description": "projectをwatchして最初のsourceを実行するWeb Preview",
+      "sourceFixtureFrame": "watching-top-right",
       "filename": "docs/images/tutorials/dsl4/create/tutorial-create-04-first-preview.png",
       "captionDraft": "正常なstarterをwatchし、最初のsourceを先頭から実行します。",
       "altDraft": "starterのproject rootをwatchして先頭から実行しているWeb Preview",
@@ -244,11 +304,24 @@
       "step": 4,
       "required": true,
       "status": "blocked",
-      "surface": "development reload dialog",
-      "description": "YAML保存後のreload選択dialog",
-      "filename": "docs/images/tutorials/dsl4/create/tutorial-create-05-reload-dialog.png",
-      "captionDraft": "変更後のsourceをどの位置から再開するか選びます。",
-      "altDraft": "先頭、現在のscene、現在のactionからの再開候補を示すreload dialog",
+      "surface": "development reload dialog (two-stage)",
+      "description": "YAML保存後の再開位置選択と適用範囲選択を示す2段階reload dialog",
+      "frames": [
+        {
+          "id": "position",
+          "sourceFixtureFrame": "dialog-position-selector",
+          "filename": "docs/images/tutorials/dsl4/create/tutorial-create-05a-reload-position.png",
+          "captionDraft": "最終reload時刻を確認し、先頭、現在のscene、現在のactionから再開位置を選びます。",
+          "altDraft": "最終reload時刻、3種類の再開位置、8方向の表示位置を示すreload dialogの第1段階"
+        },
+        {
+          "id": "scope",
+          "sourceFixtureFrame": "dialog-scope-selector",
+          "filename": "docs/images/tutorials/dsl4/create/tutorial-create-05b-reload-scope.png",
+          "captionDraft": "今回だけreload、reloadして設定保存、次回設定だけ保存、cancelから適用範囲を選びます。",
+          "altDraft": "再開位置に現在のsceneを選び、4種類の適用範囲を示すreload dialogの第2段階"
+        }
+      ],
       "gates": ["dsl4-release", "tutorial-sample", "preview-flow"]
     },
     {
@@ -259,6 +332,7 @@
       "status": "blocked",
       "surface": "development preview",
       "description": "セリフ変更が反映されたpreview",
+      "sourceFixtureFrame": "reloaded-action",
       "filename": "docs/images/tutorials/dsl4/create/tutorial-create-06-updated-dialogue.png",
       "captionDraft": "YAMLで変更したセリフがpreviewへ反映されたことを確認します。",
       "altDraft": "変更後のセリフをアクターが表示しているdevelopment preview",
@@ -308,13 +382,21 @@
       "tutorial": "create",
       "step": 6,
       "required": true,
-      "status": "reuse",
-      "surface": "pose recognition",
-      "description": "ポーズsceneのpreview",
-      "reuseOf": "P-05",
-      "captionDraft": "同梱済みpose modelを使うsceneをpreviewします。",
-      "altDraft": "同梱済みpose modelを使用しているポーズ認識scene",
-      "gates": ["dsl4-release", "tutorial-sample", "preview-flow", "pose-feedback"]
+      "status": "blocked",
+      "surface": "Web Preview pose recognition and reload controls",
+      "description": "ポーズsceneでcamera controlとreload status buttonが重ならないWeb Preview",
+      "sourceFixtureFrame": "camera-control-collision",
+      "filename": "docs/images/tutorials/dsl4/create/tutorial-create-10-pose-preview-controls.png",
+      "captionDraft": "reload status buttonがcamera controlを避け、選択した表示位置に最も近い空き位置へ移動することを確認します。",
+      "altDraft": "ポーズ認識中のWeb Previewで右上のcamera controlを避け、reload status buttonが上中央へ配置された画面",
+      "gates": [
+        "dsl4-release",
+        "tutorial-sample",
+        "preview-flow",
+        "pose-feedback",
+        "camera-controls",
+        "capture-environment"
+      ]
     },
     {
       "id": "C-11",
@@ -324,6 +406,7 @@
       "status": "blocked",
       "surface": "development diagnostics",
       "description": "source位置と修正候補を含む診断画面",
+      "sourceFixtureFrame": "diagnostic-last-known-good",
       "filename": "docs/images/tutorials/dsl4/create/tutorial-create-11-diagnostic.png",
       "captionDraft": "診断code、source位置、説明、修正候補から台本を直します。",
       "altDraft": "台本のファイル名、行、列、該当箇所、修正候補を表示した診断画面",
