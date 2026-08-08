@@ -14,6 +14,16 @@ preview transactionの責務境界を、完成実装に対応させて記録し�
 本書のpath、型、関数、event、flagは、このcommitのsourceとtestを基準にしています。
 配布成果物を調査して推測した名称ではありません。
 
+## 読む前に {#before-reading .unnumbered}
+
+本書は、4.0の利用方法を知った後に内部の層を理解するための文書です。初めて4.0に触れる場合は、先に
+[アプリ・教材・ツールチェインガイド](application-materials-guide-4.0.md)でproject、validate、preview、buildの
+関係を確認してください。実際の保守手順だけを探している場合は
+[ソフトウェアメンテナンスガイド](developer-guide-4.0.md)から入り、必要な内部節へ戻る方法もあります。
+
+本書は「範囲 → 用語 → アーキテクチャ → 各層 → transaction → 診断」の順で読みます。特に
+`StoryDocument`、generation、port、adapter、commitの意味を用語表で確認してから先へ進んでください。
+
 ## 文書の範囲 {#scope .unnumbered}
 
 本書は次を扱います。
@@ -50,6 +60,11 @@ preview transactionの責務境界を、完成実装に対応させて記録し�
 | rollback        | candidateのactivate失敗時にcandidate資源を戻し、current generationを維持する処理       |
 
 ## 権威関係とアーキテクチャ {#architecture}
+
+次図は、sourceからplatform固有処理までの主な依存方向です。内側のruntimeはcameraやTurboWarpを直接扱わず、
+portを介して外側のadapterへ依頼します。
+
+<figure class="concept-flow"><figcaption>sourceからplatform adapterまでの依存方向</figcaption><div class="concept-flow__track"><span>Project source</span><b aria-hidden="true">→</b><span>Source Graph</span><b aria-hidden="true">→</b><span>Source frontend<br>parse・Schema・semantic</span><b aria-hidden="true">→</b><span>StoryDocument<br>immutable IR</span><b aria-hidden="true">→</b><span>Runtime controller</span><b aria-hidden="true">→</b><span>Port contract</span><b aria-hidden="true">→</b><span>Platform adapter<br>TurboWarp・asset・pose・DOM</span></div><p class="concept-flow__note">source frontend、runtime、adapterの各層は、失敗を共通の診断surfaceへ投影します。</p></figure>
 
 ### 正本の順序
 

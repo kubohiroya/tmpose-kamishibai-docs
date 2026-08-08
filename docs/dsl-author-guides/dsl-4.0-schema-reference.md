@@ -19,6 +19,10 @@ Schema SHA-256: `e36c1130a4e1983728106b351795e2e605e4a665b4b92ca17acad539e9d8fee
 決定的に生成しています。型、必須性、既定値、数値範囲、列挙値、patternはSchemaから取得し、説明、掲載順、
 注意事項、例はAnnotationで管理します。Schemaと生成物が異なる場合はSchemaを優先します。
 
+> **読み方:** このリファレンスは先頭から通読する手順書ではありません。初めて作品を作る場合は、先に
+> [紙芝居DSL 4.0 台本作成ガイド](dsl-4.0-author-guide.md)で最小台本、project、scene、actionの順を確認し、
+> 作成中に必要になったfield、asset種別、actionの節だけを本書で参照してください。
+
 
 
 - 上流repository: [`kubohiroya/tmpose-kamishibai`](https://github.com/kubohiroya/tmpose-kamishibai)

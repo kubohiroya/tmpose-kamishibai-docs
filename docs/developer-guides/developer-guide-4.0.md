@@ -13,6 +13,24 @@ releaseを変更・検証・公開するソフトウェア開発者向けの作�
 [紙芝居DSL 4.0 Schemaリファレンス](../dsl-author-guides/dsl-4.0-schema-reference.md)、作品の配置と記述方法を
 調べる場合は[紙芝居DSL 4.0 台本作成ガイド](../dsl-author-guides/dsl-4.0-author-guide.md)を参照してください。
 
+## このガイドの読み進め方
+
+4.0全体を初めて調べる場合は、先に
+[アプリ・教材・ツールチェインガイド](application-materials-guide-4.0.md)でprojectからruntimeまでの流れを
+確認してください。本書はその全体像を、実際の変更・検証・release作業へ対応させる入口です。
+
+| 順序 | 読む範囲                                        | 目的                           |
+| ---- | ----------------------------------------------- | ------------------------------ |
+| 1    | 保守境界、Schemaとsource lock、repository構成   | 変更の正本とtestを選ぶ         |
+| 2    | feature flag、project、validate、preview、build | 正常な制作・配布経路を再現する |
+| 3    | Source Graph transaction、browser／CLI adapter  | snapshotとplatform境界を守る   |
+| 4    | 検証matrix、release、rollback                   | 変更を安全に公開・切り戻す     |
+
+本書を一度通読した後は、次の「最初に保守境界を判断する」を索引として使います。内部の型と状態遷移は
+[内部仕様書](internal-specification-4.0.md)、外部packageとの接続は
+[機能拡張・プラットフォーム統合ガイド](extension-guide-4.0.md)、失敗時の副作用禁止と停止順序は
+[台本診断・安全停止 設計レビュー](dsl-4.0-diagnostics-design.md)で深掘りします。
+
 ## 最初に保守境界を判断する
 
 変更対象ごとの正本と、最初に確認する場所は次のとおりです。

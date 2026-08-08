@@ -12,6 +12,16 @@ Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecom
 
 受理するDSL宣言: `kamishibai: '4.0'`
 
+## 読む前に
+
+本書は4.0文書群のうち、正常経路を理解した後に読む失敗経路の詳細資料です。先に
+[内部仕様書](internal-specification-4.0.md)で`StoryDocument`、generation、commit、rollbackを確認し、
+[機能拡張・プラットフォーム統合ガイド](extension-guide-4.0.md)でportとadapterの所有関係を確認してください。
+
+読む順序は「レビュー結論 → commit gate → diagnostic形式 → 段階別の失敗 → cleanup・表示」です。
+特定の診断codeだけを調べる場合でも、先にcommit gateの表で、その失敗が起きる段階と維持すべき状態を
+確認します。
+
 ## 文書の位置付け
 
 既存の[DSL 3.1 台本診断・安全停止 設計レビュー](dsl-3.1-diagnostics-design.md)は、Scratch parserの前へ
@@ -46,6 +56,10 @@ runtime controller、platform adapter、preview transactionです。
 一方、固定commitには二種類の診断契約があります。source frontend、runtime、CLI／editor projectionで使う
 canonical diagnostic v1と、asset transaction、navigation、reload状態が内部表示へ渡すlifecycle diagnosticです。
 後者へcanonical diagnosticに存在しないfieldを補って同一形式だと扱ってはいけません。
+
+次図は、candidateをcurrent generationへ切り替えるまでの安全判断を単純化したものです。
+
+<figure class="concept-flow"><figcaption>candidateを公開するまでのcommit gate</figcaption><div class="concept-flow__track"><span>candidate source・asset</span><b aria-hidden="true">→</b><span>validate</span><b aria-hidden="true">→</b><span>prepare・quiesce</span><b aria-hidden="true">→</b><span>activate</span><b aria-hidden="true">→</b><span>commit</span><b aria-hidden="true">→</b><span>旧generationをdispose</span></div><p class="concept-flow__note"><strong>validate失敗:</strong> 診断を表示してcurrentを維持。<strong>activate失敗:</strong> candidateをrollback・releaseしてcurrentを維持。<strong>runtime失敗:</strong> actionをabortして安全停止。</p></figure>
 
 ## 失敗経路とcommit gate
 

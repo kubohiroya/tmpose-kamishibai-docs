@@ -12,6 +12,16 @@ runtime coreまで含む内部構造は[紙芝居アプリ 4.0 内部仕様書](
 変更・release手順は[紙芝居アプリ 4.0 ソフトウェアメンテナンスガイド](developer-guide-4.0.md)を
 参照してください。
 
+## 読む前に
+
+このガイドは、[内部仕様書](internal-specification-4.0.md)でruntime、port、adapterの役割を確認した後に読む
+詳細資料です。先にすべてのpackage名を覚える必要はありません。まず「Standard Runtimeの構成契約」で
+共通境界をつかみ、その後は変更対象に対応する「統合1〜9」だけを読み、最後に共通規則・flag・検証matrixを
+確認してください。
+
+本書の次に[台本診断・安全停止 設計レビュー](dsl-4.0-diagnostics-design.md)を読むと、ここで説明する
+adapterやasset transactionが失敗したとき、どの状態を公開せず何をcleanupするかを追跡できます。
+
 ## 3.2ガイドとは独立した文書である
 
 既存の[3.2 機能拡張ガイド](extension-guide.md)は、DSL 3.2の配布SB3が利用する16個の
@@ -35,6 +45,12 @@ integrityは固定commitの`LICENSES.md`、`package.json`、`pnpm-lock.yaml`が�
 package成果物、第三者の画像は転載していません。
 
 ## Standard Runtimeの構成契約
+
+4.0ではruntime coreが外部packageを直接知るのではなく、portとcompositionを境界にします。同じ構成を
+Browser Preview、CLI接続先browser、Production SB3へ届けますが、source取得やlive reloadの能力はsurfaceごとに
+異なります。
+
+<figure class="concept-flow"><figcaption>runtime coreと外部capabilityの境界</figcaption><div class="concept-flow__track"><span>Runtime controller</span><b aria-hidden="true">→</b><span>Port contract</span><b aria-hidden="true">→</b><span>Platform composition</span><b aria-hidden="true">→</b><span>Asset Manager・TMPose・SVG Text・Async Input・Expression</span><b aria-hidden="true">→</b><span>Browser／CLI／Production surface</span></div><p class="concept-flow__note">外部packageはportの外側に置き、runtime coreへbrowserやTurboWarp固有objectを持ち込みません。</p></figure>
 
 ### 登録とbundleの単位
 

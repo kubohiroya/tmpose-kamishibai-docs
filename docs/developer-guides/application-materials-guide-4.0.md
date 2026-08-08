@@ -4,6 +4,15 @@ Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecom
 
 <p class="application-guide-kicker">DSL 4.0のproject、物語、教材、YAML台本、preview・buildを8ページでつなぐ</p>
 
+この文書は、教材やワークショップを設計する方、制作環境を整える方、preview・buildの役割を確認する方の
+ための詳細ガイドです。初めて4.0の全体像を知るための概要説明書ではありません。最初に読む場合は
+[紙芝居アプリ 4.0 概要説明書 大人向け](../user-guides/executive-summary-adult-4.0.md)で、できること、
+人・AI・プログラムの役割、制作のサイクルを確認してください。
+
+教材設計やツールチェインの具体化が必要になったら、この文書を1ページ目から8ページ目まで順に読み、
+「作品の材料」「検証」「実行」「配布」の関係をprojectへ対応させます。台本を書く方は台本作成ガイドを、
+実装を調べる方はソフトウェアメンテナンスガイドを併用します。
+
 <p class="application-page-label">1 / 8　DSL 4.0アプリ概要</p>
 
 TMPose紙芝居4.0は、YAMLで記述した物語とproject内の画像・音声・ポーズmodelを読み込み、
@@ -118,7 +127,7 @@ programの役割を分けて扱います。YAMLとassetがproject内で対応す
 
 ## 編集・検証・previewを一周する {#application-4-cycle .application-sheet .unnumbered}
 
-<p class="application-page-label">6 / 8　制作cycle</p>
+<p class="application-page-label">6 / 8　制作のサイクル</p>
 
 作者はYAMLとassetを外部editorで編集し、Schema診断、参照診断、previewの順に確認します。
 変更が失敗した場合、previewは直前の正常なgenerationを保ち、source位置付きの診断を表示します。
@@ -167,3 +176,5 @@ tmpose-kamishibai build-dsl4 \
 
 詳細な台本作成手順は[紙芝居DSL 4.0 台本作成ガイド](../dsl-author-guides/dsl-4.0-author-guide.md)、
 fieldとactionの型は[紙芝居DSL 4.0 Schemaリファレンス](../dsl-author-guides/dsl-4.0-schema-reference.md)を参照してください。
+実装を理解・保守する場合は、続けて
+[紙芝居アプリ 4.0 ソフトウェアメンテナンスガイド](developer-guide-4.0.md)へ進みます。

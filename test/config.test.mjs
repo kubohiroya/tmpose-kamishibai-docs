@@ -25,8 +25,8 @@ const expectedCollections = {
   'dsl-3.2-guides': ['dsl-manual.md', 'command-reference.md', 'history.md'],
   'dsl-4.0-guides': [
     'dsl-4.0-author-guide.md',
-    'dsl-3.2-to-4.0-conversion-guide.md',
     'dsl-4.0-schema-reference.md',
+    'dsl-3.2-to-4.0-conversion-guide.md',
   ],
   'developer-guides': [
     'application-materials-guide.md',

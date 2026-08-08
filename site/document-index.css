@@ -260,6 +260,44 @@ main {
   max-width: 76ch;
 }
 
+.reading-paths__intro {
+  max-width: 82ch;
+  line-height: 1.75;
+}
+
+.reading-paths__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.reading-paths__grid article {
+  padding: 20px;
+  border-left: 4px solid var(--site-accent);
+  border-radius: 0 10px 10px 0;
+  background: color-mix(in srgb, var(--site-paper) 88%, var(--site-accent-soft));
+}
+
+.reading-paths__grid h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.08rem;
+}
+
+.reading-paths__grid ol {
+  margin: 0;
+  padding-left: 1.35rem;
+  line-height: 1.7;
+}
+
+.reading-paths__grid li + li {
+  margin-top: 0.55rem;
+}
+
+.reading-paths__grid a {
+  color: var(--site-accent);
+  font-weight: 700;
+}
+
 .version-page section {
   margin-top: 3rem;
 }

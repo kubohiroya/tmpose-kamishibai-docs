@@ -86,7 +86,7 @@ AIではないprogramを一つの作品へ組み合わせます。何を人が�
 <p class="application-page-label">6 / 8　体験会教材説明</p>
 
 教材は完成品を眺めるだけではなく、下絵、画像生成、認識training、TurboWarpへの登録、
-台本編集、上演testまでを一つの制作cycleとして体験させます。
+台本編集、上演testまでを一つの制作のサイクルとして体験させます。
 
 <div class="application-image-grid"><figure><img src="../images/image11.png" alt="片手を上げて片膝を曲げた棒人間のポーズ下絵"><figcaption>考える・描く</figcaption></figure><figure><img src="../images/image25.png" alt="棒人間の下絵をもとに乙姫のポーズ画像を生成する画面"><figcaption>画像をつくる</figcaption></figure><figure><img src="../images/tmpose-training.png" alt="TMPoseのトレーニング進捗画面"><figcaption>ポーズを学習する</figcaption></figure><figure><img src="../images/turbowarp-costumes.png" alt="TurboWarpにPrincessとpose画像をcostumeとして登録した画面"><figcaption>costumeへ登録する</figcaption></figure></div>
 

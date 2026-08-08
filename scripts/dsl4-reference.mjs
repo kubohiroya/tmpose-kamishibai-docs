@@ -396,6 +396,10 @@ Schema SHA-256: \`${lock.schemaSha256}\`
 決定的に生成しています。型、必須性、既定値、数値範囲、列挙値、patternはSchemaから取得し、説明、掲載順、
 注意事項、例はAnnotationで管理します。Schemaと生成物が異なる場合はSchemaを優先します。
 
+> **読み方:** このリファレンスは先頭から通読する手順書ではありません。初めて作品を作る場合は、先に
+> [紙芝居DSL 4.0 台本作成ガイド](dsl-4.0-author-guide.md)で最小台本、project、scene、actionの順を確認し、
+> 作成中に必要になったfield、asset種別、actionの節だけを本書で参照してください。
+
 ${candidateSnapshot ? `> **候補snapshot:** このSchemaには、上流\`${sourceCommit.slice(0, 7)}\`へまだcommitされていないcamera preview操作UI候補を含みます。公開された上流仕様は[Issue #${lock.candidateIssue}](${lock.candidateIssueUrl})で確認でき、対応実装のmergeまでは候補fieldとして扱ってください。` : ''}
 
 - 上流repository: [\`${lock.repository}\`](https://github.com/${lock.repository})

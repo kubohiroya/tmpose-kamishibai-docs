@@ -66,10 +66,79 @@
         <p class="page-kicker">新規制作</p>
         <h1>紙芝居DSL 4.0 ドキュメント</h1>
         <p class="version-summary">
-          YAML project、Source Graph、preview／build
-          toolchainで新しく制作するための専用ページです。このページ以下の出版物はすべて<code>/4.0/</code>に保存されます。
+          YAML project、Source Graph、preview／build toolchainで新しく制作するための専用ページです。
         </p>
       </header>
+      <section class="reading-paths" aria-labelledby="reading-paths-title">
+        <h2 id="reading-paths-title">目的に合う順番で読む</h2>
+        <p class="reading-paths__intro">
+          すべてを順番に読む必要はありません。最初に全体像をつかみ、その後は目的に合う経路へ進んでください。
+          Schemaリファレンスは通読用ではなく、台本作成中にfieldやactionを調べるための資料です。
+        </p>
+        <div class="reading-paths__grid">
+          <article>
+            <h3>初めて4.0を知る</h3>
+            <ol>
+              <li>
+                <a href="user-guides/executive-summary-adult-4.0/">大人向け</a>／<a
+                  href="user-guides/executive-summary-kids-4.0/"
+                  >子供向け</a
+                >概要のうち、対象に合うドキュメントを読む
+              </li>
+              <li>概要で、できること、制作の流れ、安全上の注意をつかむ</li>
+              <li>さらに作る、移行する、保守する場合だけ、目的別の経路へ進む</li>
+            </ol>
+          </article>
+          <article>
+            <h3>新しい作品を作る</h3>
+            <ol>
+              <li>
+                <a href="user-guides/executive-summary-adult-4.0/document.html#制作のサイクル"
+                  >概要説明書の制作のサイクル</a
+                >を確認する
+              </li>
+              <li>
+                <a href="dsl-author-guides/dsl-4.0-author-guide/">台本作成ガイド</a>を実践する
+              </li>
+              <li>
+                必要な項目だけ<a href="dsl-author-guides/dsl-4.0-schema-reference/"
+                  >Schemaリファレンス</a
+                >で確認する
+              </li>
+            </ol>
+          </article>
+          <article>
+            <h3>3.1／3.2作品を移行する</h3>
+            <ol>
+              <li>
+                <a href="dsl-author-guides/dsl-3.2-to-4.0-conversion-guide/">変換ガイド</a
+                >で安全に別fileへ変換する
+              </li>
+              <li>
+                <a href="dsl-author-guides/dsl-4.0-author-guide/">台本作成ガイド</a>で出力を読む
+              </li>
+              <li>validate、preview、buildの順に確認する</li>
+            </ol>
+          </article>
+          <article>
+            <h3>実装を理解・保守する</h3>
+            <ol>
+              <li>
+                <a href="developer-guides/application-materials-guide-4.0/">全体像</a>を確認する
+              </li>
+              <li><a href="developer-guides/developer-guide-4.0/">保守作業の入口</a>を確認する</li>
+              <li>
+                <a href="developer-guides/internal-specification-4.0/">内部の層と状態</a>を理解する
+              </li>
+              <li><a href="developer-guides/extension-guide-4.0/">外部統合境界</a>を理解する</li>
+              <li>
+                <a href="developer-guides/dsl-4.0-diagnostics-design/">失敗時の安全境界</a
+                >を確認する
+              </li>
+            </ol>
+          </article>
+        </div>
+      </section>
       <section aria-labelledby="user-documents">
         <h2 id="user-documents">一般向けドキュメント</h2>
         <div class="cards">
@@ -132,24 +201,6 @@
             </div>
           </article>
           <article>
-            <h3><span aria-hidden="true">🔄</span> 紙芝居DSL 3.2から4.0への変換ガイド</h3>
-            <p class="audience">DSL 3.1／3.2の既存作品を4.0へ移行する方</p>
-            <p>
-              convert-dsl4の実行方法、pose
-              model置換、診断、変換できない入力、検証とrollbackを説明します。
-            </p>
-            <div class="actions">
-              <a class="button" href="dsl-author-guides/dsl-3.2-to-4.0-conversion-guide/">HTML</a>
-              <a
-                class="button secondary"
-                href="https://vivliostyle.org/viewer/#src=https://kubohiroya.github.io/tmpose-kamishibai-docs/4.0/dsl-author-guides/dsl-3.2-to-4.0-conversion-guide/publication.json&amp;bookMode=true"
-                target="_blank"
-                rel="noopener"
-                >Vivliostyle Viewer</a
-              >
-            </div>
-          </article>
-          <article>
             <h3><span aria-hidden="true">🔎</span> 紙芝居DSL 4.0 Schemaリファレンス</h3>
             <p class="audience">DSL 4.0のSchemaを確認する方</p>
             <p>
@@ -161,6 +212,24 @@
               <a
                 class="button secondary"
                 href="https://vivliostyle.org/viewer/#src=https://kubohiroya.github.io/tmpose-kamishibai-docs/4.0/dsl-author-guides/dsl-4.0-schema-reference/publication.json&amp;bookMode=true"
+                target="_blank"
+                rel="noopener"
+                >Vivliostyle Viewer</a
+              >
+            </div>
+          </article>
+          <article>
+            <h3><span aria-hidden="true">🔄</span> 紙芝居DSL 3.2から4.0への変換ガイド</h3>
+            <p class="audience">DSL 3.1／3.2の既存作品を4.0へ移行する方</p>
+            <p>
+              convert-dsl4の実行方法、pose
+              model置換、診断、変換できない入力、検証とrollbackを説明します。
+            </p>
+            <div class="actions">
+              <a class="button" href="dsl-author-guides/dsl-3.2-to-4.0-conversion-guide/">HTML</a>
+              <a
+                class="button secondary"
+                href="https://vivliostyle.org/viewer/#src=https://kubohiroya.github.io/tmpose-kamishibai-docs/4.0/dsl-author-guides/dsl-3.2-to-4.0-conversion-guide/publication.json&amp;bookMode=true"
                 target="_blank"
                 rel="noopener"
                 >Vivliostyle Viewer</a

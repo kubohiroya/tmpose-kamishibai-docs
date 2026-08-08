@@ -16,6 +16,17 @@ commandです。DSL 3.1は3.2互換grammarとして読み込み、warningを出�
 変換元は変更しません。変換に成功した場合だけ出力をatomicに作成または置換し、error時は途中までの
 YAMLを残さず既存出力を維持します。まず元作品とは別の出力名を指定し、warningと実行結果を確認してください。
 
+## このガイドの位置づけ
+
+このガイドは、DSL 3.1／3.2の文法を説明し直す資料でも、4.0の全fieldを説明する資料でもありません。
+既存TXT台本を安全にYAMLへ変換し、4.0作者向けの作業へ引き渡すところまでを扱います。
+
+<figure class="concept-flow"><figcaption>既存作品を4.0の制作経路へ引き渡す</figcaption><div class="concept-flow__track"><span>3.1／3.2 TXT<br>元fileを保持</span><b aria-hidden="true">→</b><span>convert-dsl4<br>別fileへ変換</span><b aria-hidden="true">→</b><span>4.0 YAML<br>warningを確認</span><b aria-hidden="true">→</b><span>台本作成ガイドで構造確認</span><b aria-hidden="true">→</b><span>validate・preview・build</span></div><p class="concept-flow__note"><strong>変換または検証に失敗した場合:</strong> 元fileを変更せず、診断に対応する入力または生成YAMLを修正します。</p></figure>
+
+変換前は本書の「自動変換を停止する入力」まで確認し、変換後は
+[紙芝居DSL 4.0 台本作成ガイド](dsl-4.0-author-guide.md)の最小台本、project配置、診断の順に読みます。
+型や必須性を調べるときだけSchemaリファレンスを使用します。
+
 ## 基本コマンド
 
 packageを導入したprojectのdirectoryで実行します。

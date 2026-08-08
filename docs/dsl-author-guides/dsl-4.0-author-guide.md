@@ -19,18 +19,25 @@ Schemaはruntime実装から生成するものではありません。
 
 この文書は、完成したDSL 4.0表層仕様と作者向けtoolchainを、台本作者が読める形で説明します。
 
-仕様の正本は、tmpose-kamishibaiリポジトリの
-[紙芝居DSL 4.0 表層仕様](https://github.com/kubohiroya/tmpose-kamishibai/blob/79457815f5c89b181b1a879a079a4d6a72d405ed/docs/design/dsl-4-surface.md)と
-[JSON Schema](https://github.com/kubohiroya/tmpose-kamishibai/blob/79457815f5c89b181b1a879a079a4d6a72d405ed/schema/dsl-4.schema.json)です。
-camera preview操作UIは[Issue #388](https://github.com/kubohiroya/tmpose-kamishibai/issues/388)、advanced speechと
-`speechStyles`は[Issue #396](https://github.com/kubohiroya/tmpose-kamishibai/issues/396)、
-`Actor.moveTo.easing`は[Issue #398](https://github.com/kubohiroya/tmpose-kamishibai/issues/398)、
-`Actor.setTransparency`は[Issue #406](https://github.com/kubohiroya/tmpose-kamishibai/issues/406)、
-Source Graphと`include`は[Issue #417](https://github.com/kubohiroya/tmpose-kamishibai/issues/417)から
-上記commitまでにmergeされています。project directory選択と
-YAML live reloadは[Issue #390](https://github.com/kubohiroya/tmpose-kamishibai/issues/390)、local assetの
-追加・内容更新のlive reloadは
-[Issue #391](https://github.com/kubohiroya/tmpose-kamishibai/issues/391)で実装されています。
+## このガイドの読み進め方
+
+初めて台本を書く場合は、次の順序で進めてください。Schemaリファレンスは最初から通読せず、手順の途中で
+fieldやactionの詳細が必要になったときに参照します。
+
+| 段階 | 本書で読む範囲 | 到達点 |
+|---|---|---|
+| 1 | DSL 4.0の記法、最小台本 | 一つのsceneを読める |
+| 2 | Project配置、YAML規則、名前、asset、Actor | sourceと素材の対応を作れる |
+| 3 | 表紙、入力、style、scene、action | 短い作品を書ける |
+| 4 | stableId、Web Preview、総合サンプル | 変更を安全に確認できる |
+| 5 | 診断、チェックリスト | validateして配布前確認ができる |
+
+<figure class="concept-flow"><figcaption>台本を段階的に完成させる順序</figcaption><div class="concept-flow__track"><span>最小台本</span><b aria-hidden="true">→</b><span>projectとasset</span><b aria-hidden="true">→</b><span>sceneとaction</span><b aria-hidden="true">→</b><span>validate</span><b aria-hidden="true">→</b><span>preview</span><b aria-hidden="true">→</b><span>build</span></div><p class="concept-flow__note"><strong>診断が出た場合:</strong> sceneとactionへ戻り、source位置を確認してから再度validateします。</p></figure>
+
+すでに3系作品がある方は、先に
+[3系作品の変換ガイド](dsl-3.2-to-4.0-conversion-guide.md)で別fileへ変換し、
+生成されたYAMLを本書の「最小台本」「Projectのfileを配置する」「診断と安全停止」と照合してください。
+実装状況を調査する必要がなければ、次の「実装完成範囲」は確認だけに留め、最小台本へ進めます。
 
 ## DSL 4.0の記法
 
@@ -68,6 +75,20 @@ actionは1キーのYAML mapping、複数引数は`x`、`y`、`seconds`などの�
 builder、TurboWarp runtime surface、browser／CLI previewを含むend-to-end実装は完成しています。
 ただし、完成した機能の一部は起動時固定・既定OFFのfeature flagで段階導入されます。実装完成は、
 すべての公開releaseで自動的に有効になることを意味しません。
+
+### 実装根拠を確認する場合
+
+仕様の正本は、tmpose-kamishibaiリポジトリの
+[紙芝居DSL 4.0 表層仕様](https://github.com/kubohiroya/tmpose-kamishibai/blob/79457815f5c89b181b1a879a079a4d6a72d405ed/docs/design/dsl-4-surface.md)と
+[JSON Schema](https://github.com/kubohiroya/tmpose-kamishibai/blob/79457815f5c89b181b1a879a079a4d6a72d405ed/schema/dsl-4.schema.json)です。
+camera preview操作UIは[Issue #388](https://github.com/kubohiroya/tmpose-kamishibai/issues/388)、advanced speechと
+`speechStyles`は[Issue #396](https://github.com/kubohiroya/tmpose-kamishibai/issues/396)、
+`Actor.moveTo.easing`は[Issue #398](https://github.com/kubohiroya/tmpose-kamishibai/issues/398)、
+`Actor.setTransparency`は[Issue #406](https://github.com/kubohiroya/tmpose-kamishibai/issues/406)、
+Source Graphと`include`は[Issue #417](https://github.com/kubohiroya/tmpose-kamishibai/issues/417)から
+上記commitまでにmergeされています。project directory選択とYAML live reloadは
+[Issue #390](https://github.com/kubohiroya/tmpose-kamishibai/issues/390)、local assetの追加・内容更新のlive reloadは
+[Issue #391](https://github.com/kubohiroya/tmpose-kamishibai/issues/391)で実装されています。
 
 ## 最小台本
 
