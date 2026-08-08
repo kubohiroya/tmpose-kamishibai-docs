@@ -45,7 +45,7 @@ test('grounds the adult overview in completed DSL 4.0 surfaces', () => {
     'preview-dsl4',
     'build-dsl4',
     '自己完結SB3',
-    'camera preview',
+    'カメラプレビュー',
     'poseModel',
     '教育・ワークショップでの利用',
   ]) {

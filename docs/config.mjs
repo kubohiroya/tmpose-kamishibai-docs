@@ -17,7 +17,7 @@ export const documentCollections = [
         title: '紙芝居アプリ 4.0 概要説明書 大人向け',
         audience: '保護者・教員・教材作成者・運営者',
         description:
-          'TMPose紙芝居4.0の価値、YAML project、Source Graph、preview・build、camera・pose入力、教育利用を説明します。',
+          'TMPose紙芝居4.0の価値、YAMLプロジェクト、Source Graph、プレビュー・ビルド、カメラ・ポーズ入力、教育利用を説明します。',
       },
       {
         sourceFilename: 'executive-summary-kids.md',
@@ -90,7 +90,7 @@ export const documentCollections = [
         title: '紙芝居DSL 4.0 台本作成ガイド',
         audience: 'DSL 4.0の作品を作る方',
         description:
-          '完成したDSL 4.0について、Source Graph、project配置、live reload、camera preview、speech、透明度、分岐、診断を説明します。',
+          '完成したDSL 4.0について、Source Graph、プロジェクト配置、変更の自動反映、カメラプレビュー、発話、透明度、分岐、診断を説明します。',
       },
       {
         sourceFilename: 'dsl-4.0-schema-reference.md',
@@ -99,7 +99,7 @@ export const documentCollections = [
         title: '紙芝居DSL 4.0 Schemaリファレンス',
         audience: 'DSL 4.0のSchemaを確認する方',
         description:
-          '完成commitの規範JSON Schemaから、camera preview、speech、think、moveTo easing、setTransparencyを含む型と制約を生成しています。',
+          '完成コミットの規範JSON Schemaから、カメラプレビュー、発話、思考、moveToのeasing、setTransparencyを含む型と制約を生成しています。',
       },
       {
         sourceFilename: 'dsl-3.2-to-4.0-conversion-guide.md',
@@ -131,7 +131,7 @@ export const documentCollections = [
         title: 'TMPose紙芝居 4.0 アプリ・教材・ツールチェインガイド',
         audience: 'DSL 4.0のアプリ、教材、ツールチェインを把握する方',
         description:
-          'DSL 4.0系列のproject、Source Graph、体験教材の構成、YAML台本、preview、buildを図解付き・全8ページで紹介します。',
+          'DSL 4.0系列のプロジェクト、Source Graph、体験教材の構成、YAML台本、プレビュー、ビルドを図解付き・全8ページで紹介します。',
       },
       {
         sourceFilename: 'developer-guide.md',
@@ -144,9 +144,9 @@ export const documentCollections = [
         sourceFilename: 'developer-guide-4.0.md',
         version: '4.0',
         title: '紙芝居アプリ 4.0 ソフトウェアメンテナンスガイド',
-        audience: 'TMPose紙芝居4.0のsource frontend、runtime、adapterを保守する開発者',
+        audience: 'TMPose紙芝居4.0のソースフロントエンド、ランタイム、アダプターを保守する開発者',
         description:
-          'DSL 4.0の固定Schema、Source Graph transaction、preview／build adapter、自己完結SB3、検証matrix、releaseとrollbackを案内します。',
+          'DSL 4.0の固定スキーマ、Source Graphのトランザクション、プレビュー／ビルドのアダプター、自己完結SB3、検証表、リリースとロールバックを案内します。',
       },
       {
         sourceFilename: 'internal-specification.md',
@@ -161,7 +161,7 @@ export const documentCollections = [
         title: '紙芝居アプリ 4.0 内部仕様書',
         audience: 'TMPose紙芝居4.0の実装を調査・変更する方',
         description:
-          'TMPose紙芝居4.0のsource frontend、Source Graph、StoryDocument、runtime、platform adapter、transaction、状態遷移を記録します。',
+          'TMPose紙芝居4.0のソースフロントエンド、Source Graph、StoryDocument、ランタイム、プラットフォームアダプター、トランザクション、状態遷移を記録します。',
       },
       {
         sourceFilename: 'extension-guide.md',
@@ -191,7 +191,7 @@ export const documentCollections = [
         title: 'DSL 4.0 台本診断・安全停止 設計レビュー',
         audience: 'DSL 4.0の診断、transaction、安全停止を実装・レビューする方',
         description:
-          'DSL 4.0のparse、Schema、semantic、include、asset transaction、runtime、platform診断と、invalid candidate、副作用禁止、cleanup、表示surfaceを記録します。',
+          'DSL 4.0の解析、スキーマ、意味検証、include、アセットのトランザクション、ランタイム、プラットフォーム診断と、不正な候補、副作用禁止、後片付け、表示画面を記録します。',
       },
       {
         sourceFilename: 'dependency-audit.md',

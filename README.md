@@ -47,6 +47,9 @@
 具体的なファイル対応、依存境界、実施記録は[MIGRATION.md](MIGRATION.md)を参照してください。
 `docs/tutorials/`はDSL 4.0リリース前のdraftであり、現時点では公開文書一覧とAppBarへ登録しません。
 
+本文の用語、コード表記、固有概念の初出説明、図表の使い分けは
+[TMPose紙芝居ドキュメント表記ガイド](WRITING-STYLE.md)に従います。
+
 ## 開発
 
 Node.js 24.0.0以降とpnpm 11を使用します。

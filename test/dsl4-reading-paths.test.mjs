@@ -83,7 +83,7 @@ test('uses focused rendered diagrams for relationships that span multiple stages
     assert.match(source, /concept-flow__track/u);
   }
 
-  assert.match(adultOverview, /project<br>YAML・画像・音・pose model/u);
+  assert.match(adultOverview, /プロジェクト<br>YAML・画像・音・ポーズモデル/u);
   assert.match(authorGuide, /最小台本[\s\S]*projectとasset[\s\S]*sceneとaction/u);
   assert.match(conversionGuide, /3\.1／3\.2 TXT[\s\S]*convert-dsl4[\s\S]*4\.0 YAML/u);
   assert.match(internalSpecification, /Source Graph[\s\S]*StoryDocument[\s\S]*Runtime controller/u);
