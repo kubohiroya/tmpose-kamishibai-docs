@@ -52,7 +52,8 @@ test('connects overview, authoring, reference, and implementation documents with
   assert.match(adultOverview, /この文書を読み終えた時点で、4\.0の概要把握は完了/u);
   assert.match(adultOverview, /アプリ・教材・ツールチェインガイド/u);
   assert.doesNotMatch(childOverview, /アプリ・教材・ツールチェインガイド/u);
-  assert.match(applicationGuide, /初めて4\.0の全体像を知るための概要説明書ではありません/u);
+  assert.match(applicationGuide, /初めて4\.0の全体像を知るための概要説明書でも/u);
+  assert.match(applicationGuide, /新規作品を作る全員の必須手順書でもありません/u);
   assert.match(applicationGuide, /ソフトウェアメンテナンスガイド/u);
 
   assert.match(authorGuide, /## このガイドの読み進め方/u);

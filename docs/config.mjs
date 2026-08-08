@@ -129,9 +129,9 @@ export const documentCollections = [
         sourceFilename: 'application-materials-guide-4.0.md',
         version: '4.0',
         title: 'TMPose紙芝居 4.0 アプリ・教材・ツールチェインガイド',
-        audience: 'DSL 4.0のアプリ、教材、ツールチェインを把握する方',
+        audience: '教材・ワークショップ設計者、制作環境担当者、プレビュー／ビルド確認者',
         description:
-          'DSL 4.0系列のプロジェクト、Source Graph、体験教材の構成、YAML台本、プレビュー、ビルドを図解付き・全8ページで紹介します。',
+          '概要説明の次に全員が読む文書ではなく、教材設計、制作環境、検証・プレビュー・ビルドを具体化するための全8ページの詳細ガイドです。',
       },
       {
         sourceFilename: 'developer-guide.md',
