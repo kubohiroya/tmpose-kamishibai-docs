@@ -51,6 +51,8 @@
 [TMPose紙芝居ドキュメント表記ガイド](WRITING-STYLE.md)に従います。
 DSL 4.0の固定実装、正式リリース、公開画面、文書状態の区別は
 [DSL 4.0 文書・公開状態の表記基準](DSL4-PUBLICATION-STATUS.md)で管理します。
+概念図の通常HTML、狭幅、印刷、フラグメントの確認結果は
+[DSL 4.0 概念図・フラグメントQA記録](DSL4-DIAGRAM-QA.md)へ記録します。
 
 ## 開発
 

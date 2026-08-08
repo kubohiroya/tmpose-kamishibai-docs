@@ -191,7 +191,8 @@ function rewriteMarkdownLinks(source, document, htmlPath) {
         .relative(path.dirname(htmlPath), targetDirectory)
         .split(path.sep)
         .join('/');
-      return `href="${relativeTarget}/${hash}"`;
+      const targetPage = hash === '' ? `${relativeTarget}/` : `${relativeTarget}/document.html`;
+      return `href="${targetPage}${hash}"`;
     }
 
     const repositoryPath = path.relative(projectRoot, targetSourcePath).split(path.sep).join('/');

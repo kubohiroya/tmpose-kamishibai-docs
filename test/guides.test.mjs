@@ -382,7 +382,7 @@ test('keeps the extension guide as an index, bundle explanation, and sixteen two
     /^## Web Linkで利用者がボタンやメニューを操作したとき、設定済みのHTTPSページを開く /mu,
   );
   assert.doesNotMatch(extensionGuide, /公式URLだけを開く|title buttonからだけ開く/u);
-  assert.match(theme, /content: "TMPose 紙芝居での利用例";/u);
+  assert.match(theme, /content: ['"]TMPose 紙芝居での利用例['"];/u);
   assert.doesNotMatch(`${extensionGuide}\n${theme}`, /TMPose紙芝居での利用/u);
   assert.match(
     extensionGuide,

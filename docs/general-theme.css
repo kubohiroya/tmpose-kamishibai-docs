@@ -23,7 +23,7 @@ body > section.level1 > section.level2:not(:has(> h2.unnumbered)) {
 }
 
 body > section.level1 > section.level2:not(:has(> h2.unnumbered)) > h2:first-child::before {
-  content: counter(general-chapter) ". ";
+  content: counter(general-chapter) '. ';
 }
 
 body > section.level1 > section.level2:not(:has(> h2.unnumbered)) > section.level3 {
@@ -35,16 +35,16 @@ body
   > section.level2:not(:has(> h2.unnumbered))
   > section.level3
   > h3:first-child::before {
-  content: counter(general-chapter) "." counter(general-section) " ";
+  content: counter(general-chapter) '.' counter(general-section) ' ';
 }
 
-a[data-ref="chapter"]::after {
-  content: "（第" target-counter(attr(href), general-chapter) "章）";
+a[data-ref='chapter']::after {
+  content: '（第' target-counter(attr(href), general-chapter) '章）';
 }
 
-a[data-ref="section"]::after {
-  content: "（" target-counter(attr(href), general-chapter) "."
-    target-counter(attr(href), general-section) "節）";
+a[data-ref='section']::after {
+  content: '（' target-counter(attr(href), general-chapter) '.'
+    target-counter(attr(href), general-section) '節）';
 }
 
 #toc {
@@ -71,19 +71,19 @@ a[data-ref="section"]::after {
   break-inside: avoid;
 }
 
-#toc > ol > li[data-section-level="1"] {
+#toc > ol > li[data-section-level='1'] {
   counter-reset: general-toc-chapter;
 }
 
-#toc > ol > li[data-section-level="1"]:only-child > a {
+#toc > ol > li[data-section-level='1']:only-child > a {
   display: none;
 }
 
-#toc > ol > li[data-section-level="1"]:only-child > ol {
+#toc > ol > li[data-section-level='1']:only-child > ol {
   padding-left: 0;
 }
 
-#toc li[data-section-level="2"] {
+#toc li[data-section-level='2'] {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   column-gap: 0.35em;
@@ -91,39 +91,39 @@ a[data-ref="section"]::after {
   counter-reset: general-toc-section;
 }
 
-#toc li[data-section-level="3"] {
+#toc li[data-section-level='3'] {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   column-gap: 0.35em;
   counter-increment: general-toc-section;
 }
 
-#toc li[data-section-level="2"]::before {
-  content: counter(general-toc-chapter) ".";
+#toc li[data-section-level='2']::before {
+  content: counter(general-toc-chapter) '.';
 }
 
-#toc li[data-section-level="3"]::before {
-  content: counter(general-toc-chapter) "." counter(general-toc-section);
+#toc li[data-section-level='3']::before {
+  content: counter(general-toc-chapter) '.' counter(general-toc-section);
 }
 
-#toc li[data-section-level="2"] > a,
-#toc li[data-section-level="3"] > a {
+#toc li[data-section-level='2'] > a,
+#toc li[data-section-level='3'] > a {
   grid-column: 2;
 }
 
-#toc li[data-section-level="2"] > ol,
-#toc li[data-section-level="3"] > ol {
+#toc li[data-section-level='2'] > ol,
+#toc li[data-section-level='3'] > ol {
   grid-column: 1 / -1;
 }
 
-#toc li[data-section-level="2"]:has(> a[href$="#terminology"]),
-#toc li[data-section-level="2"]:has(> a[href$="#terminology"]) li[data-section-level="3"] {
+#toc li[data-section-level='2']:has(> a[href$='#terminology']),
+#toc li[data-section-level='2']:has(> a[href$='#terminology']) li[data-section-level='3'] {
   display: block;
   counter-increment: none;
 }
 
-#toc li[data-section-level="2"]:has(> a[href$="#terminology"])::before,
-#toc li[data-section-level="2"]:has(> a[href$="#terminology"]) li[data-section-level="3"]::before {
+#toc li[data-section-level='2']:has(> a[href$='#terminology'])::before,
+#toc li[data-section-level='2']:has(> a[href$='#terminology']) li[data-section-level='3']::before {
   content: none;
 }
 
@@ -320,14 +320,14 @@ body
   > section.level1:has(> .extension-overview-kicker)
   > section.level2:has(> h2.extension-sheet-left)
   > h2.extension-sheet-left:first-child::before {
-  content: "機能拡張そのもの";
+  content: '機能拡張そのもの';
 }
 
 body
   > section.level1:has(> .extension-overview-kicker)
   > section.level2:has(> h2.extension-sheet-right)
   > h2.extension-sheet-right:first-child::before {
-  content: "TMPose 紙芝居での利用例";
+  content: 'TMPose 紙芝居での利用例';
 }
 
 .extension-meta {
@@ -908,7 +908,8 @@ h2.application-sheet {
 
 .concept-flow__track {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: stretch;
   justify-content: center;
   gap: 0.45rem;
@@ -920,8 +921,9 @@ h2.application-sheet {
 
 .concept-flow__track span {
   display: flex;
-  min-width: 7.5rem;
-  flex: 1 1 7.5rem;
+  min-width: 0;
+  min-height: 3rem;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   padding: 0.55rem 0.65rem;
@@ -935,9 +937,11 @@ h2.application-sheet {
 .concept-flow__track b {
   display: flex;
   flex: 0 0 auto;
+  align-self: center;
   align-items: center;
   color: var(--accent);
   font-size: 1.2rem;
+  transform: rotate(90deg);
 }
 
 .concept-flow__note {
@@ -1083,6 +1087,31 @@ h2.application-sheet {
     margin: 14mm 15mm 16mm;
   }
 
+  .concept-flow {
+    break-inside: avoid-page;
+  }
+
+  .concept-flow__track {
+    gap: 1.2mm;
+    padding: 2.2mm;
+  }
+
+  .concept-flow__track span {
+    min-width: 0;
+    padding: 1.5mm 1.2mm;
+    font-size: 7.2pt;
+    line-height: 1.3;
+  }
+
+  .concept-flow__track b {
+    font-size: 9pt;
+  }
+
+  .concept-flow__note {
+    padding: 1.7mm 2mm;
+    font-size: 7.2pt;
+  }
+
   body > section.level1:first-child > h1:first-child,
   body > h1:first-child {
     margin-top: 0;
@@ -1107,7 +1136,7 @@ h2.application-sheet {
     order: 1;
     margin: 0 0.5em;
     border-bottom: 1px dotted var(--muted);
-    content: "";
+    content: '';
   }
 
   #toc li a::after {

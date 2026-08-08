@@ -105,6 +105,40 @@ async function verifyLocalImages(htmlPath, html) {
   return imageSources.length;
 }
 
+async function verifyLocalFragments() {
+  const htmlFiles = await findHtmlFiles(distRoot);
+  const htmlCache = new Map();
+
+  for (const htmlFile of htmlFiles) {
+    const html = await readFile(htmlFile, 'utf8');
+    htmlCache.set(htmlFile, html);
+
+    for (const href of attributeValues(html, 'a', 'href')) {
+      if (!href.includes('#') || /^(?:[a-z][a-z0-9+.-]*:|\/\/)/iu.test(href)) continue;
+
+      const destination = new URL(href, pathToFileURL(htmlFile));
+      const fragment = decodeURIComponent(destination.hash.slice(1));
+      if (fragment === '') continue;
+
+      let targetPath = fileURLToPath(destination);
+      if (targetPath.endsWith(path.sep)) targetPath = path.join(targetPath, 'index.html');
+      const relativeTarget = path.relative(distRoot, targetPath);
+      assert(
+        relativeTarget !== '..' && !relativeTarget.startsWith(`..${path.sep}`),
+        `${path.relative(distRoot, htmlFile)} links outside dist/: ${href}`,
+      );
+
+      const targetHtml = htmlCache.get(targetPath) ?? (await readFile(targetPath, 'utf8'));
+      htmlCache.set(targetPath, targetHtml);
+      const ids = new Set([...targetHtml.matchAll(/\bid="([^"]+)"/gu)].map((match) => match[1]));
+      assert(
+        ids.has(fragment),
+        `${path.relative(distRoot, htmlFile)} links to missing fragment ${href}`,
+      );
+    }
+  }
+}
+
 async function verifySiteAppBars() {
   const htmlFiles = await findHtmlFiles(distRoot);
   const favicon = await readFile(faviconPath);
@@ -465,6 +499,7 @@ export async function verifyBuild() {
   for (const document of documentationConfig.documents) {
     await verifyDocument(document);
   }
+  await verifyLocalFragments();
   await verifyWorkshop();
   const appBarHtmlCount = await verifySiteAppBars();
 
