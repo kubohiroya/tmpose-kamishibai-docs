@@ -362,8 +362,9 @@ file出力は`buildDsl4RuntimeComponentFile()`がcandidate directoryを検証し
 5. scene commitで次sceneに不要な`retention: scene` assetをreleaseする。
 6. stop、failure、disposeで全resourceを逆所有順に解放する。
 
-remote assetは自動的に許可しません。`createDsl4RemoteAssetLifecycle()`へverified resolverを明示注入し、
-HTTPS、SHA-256 integrity、media type、sizeを検証した場合だけ同じlifecycleへ入ります。
+remote assetは自動的に許可しません。`createDsl4RemoteAssetLifecycle()`へhost loaderを明示注入した場合だけ
+有効です。通常のposeModelはHTTPS directory URLから`model.json`、`metadata.json`、宣言されたweightsを
+lazy取得します。検証付きremoteはSHA-256 integrity、media type、sizeを再検証して同じlifecycleへ入ります。
 
 ## Transaction、snapshot、commit／rollback {#transactions}
 

@@ -201,8 +201,9 @@ cameraを使わない作品も作れます。身体参加が活動目的に合�
 | 終了 | 停止時にcamera、音、model、画面表示を片付けられるか |
 
 制作中は、正常なgenerationが保持されるからといって診断を放置せず、配布前にすべての必須検証を通します。
-remote assetを利用する場合は、HTTPSだけでなく、期待する内容を固定するintegrity、Content-Type、sizeの指定と、
-上映環境のnetwork条件も確認します。offline運用ではlocal assetを成果物へ含めます。
+通常のremote poseModelを利用する場合は、TMPose directory URLと上映環境のnetwork条件を確認します。
+remoteのまま内容を固定する場合はintegrity、Content-Type、sizeをすべて指定します。offline運用や確実な
+内容固定が必要な場合はlocal modelを成果物へ含めます。
 
 ## 仕様と公開状態
 

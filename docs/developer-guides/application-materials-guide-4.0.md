@@ -161,7 +161,7 @@ tmpose-kamishibai build-dsl4 \
   --control-profile production \
   --channel bundled</code></pre>
 
-<div class="application-columns"><section><p class="application-subhead">検証</p><ul><li>pretty診断は作者が読む</li><li>JSON診断はeditorやCIが利用する</li><li>同じ入力から同じStoryDocumentを得る</li><li>上限値をCLI引数で明示する</li></ul></section><section><p class="application-subhead">build</p><ul><li>project rootとmanifestを明示する</li><li>local sourceとassetをbundleする</li><li>remote assetはintegrity付きで扱う</li><li>完成candidateだけを出力先へ置換する</li></ul></section></div>
+<div class="application-columns"><section><p class="application-subhead">検証</p><ul><li>pretty診断は作者が読む</li><li>JSON診断はeditorやCIが利用する</li><li>同じ入力から同じStoryDocumentを得る</li><li>上限値をCLI引数で明示する</li></ul></section><section><p class="application-subhead">build</p><ul><li>project rootとmanifestを明示する</li><li>local sourceとassetをbundleする</li><li>通常のremote poseまたは検証付きremoteを明示する</li><li>完成candidateだけを出力先へ置換する</li></ul></section></div>
 
 <p class="application-callout"><strong>配布前確認:</strong> validate、Web Preview、build後のself-contained artifact smokeを同じproject generationに対して行います。</p>
 

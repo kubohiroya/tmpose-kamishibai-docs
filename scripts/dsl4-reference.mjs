@@ -42,6 +42,7 @@ const expectedStaticSectionPointers = {
     '#/$defs/retentionPolicy',
     '#/$defs/deliveryPolicy',
     '#/$defs/remoteAssetSource',
+    '#/$defs/remotePoseModelSource',
     '#/$defs/keyCode',
     '#/$defs/navigationCommand',
     '#/$defs/variableValue',

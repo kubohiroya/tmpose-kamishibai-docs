@@ -112,7 +112,7 @@
     {
       "id": "asset-types",
       "title": "asset種別",
-      "description": "assetは短縮文字列または名前付きobjectで記述します。名前付きobjectでは、project内asset名、相対file、integrity付きremote sourceのいずれか一つを選びます。",
+      "description": "assetは短縮文字列または名前付きobjectで記述します。名前付きobjectでは、project内asset名、相対file、または明示的なremote sourceのいずれか一つを選びます。",
       "entries": [
         {
           "pointer": "#/$defs/asset",
@@ -122,7 +122,7 @@
           "example": "backdrop",
           "notes": [
             "短縮形式はproject内に同名のassetがある場合に使います。",
-            "remote sourceはHTTPS URLだけでなくSHA-256、content type、byte sizeを固定します。"
+            "poseModelは通常のHTTPS TMPose directory URLを指定できます。それ以外のremote sourceと検証付きremote poseはSHA-256、content type、byte sizeを固定します。"
           ]
         },
         {
@@ -157,8 +157,8 @@
           "pointer": "#/$defs/namedPoseModel",
           "order": 60,
           "title": "名前付きポーズモデル",
-          "summary": "ポーズモデルは相対fileまたは固定remote sourceで指定し、project内の表示名だけを使う形式はありません。",
-          "example": "kind: poseModel\ndelivery: remote\nsource:\n  url: https://example.com/model.json\n  integrity: sha256-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\n  contentType: application/json\n  size: 4096"
+          "summary": "ポーズモデルは埋め込む相対file、通常のTMPose directory URL、または検証付きremote archiveで指定します。project内の表示名だけを使う形式はありません。",
+          "example": "kind: poseModel\ndelivery: remote\nloading: lazy\nsource:\n  url: https://example.com/models/rescue/"
         },
         {
           "pointer": "#/$defs/namedImage",
@@ -375,7 +375,7 @@
           "pointer": "#/$defs/deliveryPolicy",
           "order": 50,
           "title": "配布policy",
-          "summary": "成果物へ埋め込むembeddedと、integrity付きURLを使うremoteから選びます。",
+          "summary": "成果物へ埋め込むembeddedと、明示的にURLから取得するremoteから選びます。",
           "example": "remote"
         },
         {
@@ -384,6 +384,13 @@
           "title": "remote asset source",
           "summary": "HTTPS URL、SHA-256、content type、byte sizeをすべて固定し、取得対象を決定的にします。",
           "example": "url: https://example.com/audio.ogg\nintegrity: sha256-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\ncontentType: audio/ogg\nsize: 1024"
+        },
+        {
+          "pointer": "#/$defs/remotePoseModelSource",
+          "order": 65,
+          "title": "remote pose model source",
+          "summary": "通常のTMPose directoryはHTTPS URLだけで参照できます。検証付きremote archiveにする場合はintegrity、content type、byte sizeを三つとも指定します。",
+          "example": "url: https://example.com/models/rescue/"
         },
         {
           "pointer": "#/$defs/keyCode",

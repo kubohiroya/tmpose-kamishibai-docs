@@ -402,6 +402,10 @@ sourceではproject root基準になります。次の値は使用できませ�
 基準仕様では、builderがfileのbyte列を成果物へ埋め込み、実行環境からのネットワーク取得を不要にします。
 Source Graphでは正規化後pathとsymlink実体の両方がproject root内であることをbyte列の読込前に確認します。
 
+SB3の初期容量を抑えたいposeModelは、`delivery: remote`と`source.url`で通常のTMPose directory URLを
+指定できます。このモードは取得時点のmodelを使います。内容を固定する場合はmodel directoryをlocalの
+`file`へ置き、builderでSB3へ埋め込みます。
+
 ### eagerとlazy
 
 名前付きアセットには`loading: eager`または`loading: lazy`を指定できます。省略時と短形式は
@@ -410,7 +414,8 @@ Source Graphでは正規化後pathとsymlink実体の両方がproject root内で
 - `eager`: 実行開始時に準備する
 - `lazy`: 必要なシーンへの遷移が決まってから先読みし、シーン開始までに準備する
 
-`lazy`でもアセット自体は配布成果物へ埋め込みます。scene開始時に準備が終わっていない場合は
+`delivery: embedded`なら`lazy`でもアセット自体は配布成果物へ埋め込みます。remote poseModelは必要時に
+URLから取得します。scene開始時に準備が終わっていない場合は
 Loading表示で待ち、準備に失敗した場合はそのsceneのアクションを開始せず診断を表示する設計です。
 camera preview controlから参照する`image`はpreview開始時に必要なため、`loading: eager`だけを使用します。
 `lazy`のcontrol画像参照は意味検証でエラーになります。

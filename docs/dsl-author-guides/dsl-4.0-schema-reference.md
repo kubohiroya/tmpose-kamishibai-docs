@@ -6,8 +6,8 @@ Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecom
 対象: DSL 4.0台本の作成、構造・制約の確認を行う方\
 対象仕様: `kamishibai: '4.0'`\
 文書状態: **DSL 4.0実装完成版**\
-Schema固定commit: [`7945781`](https://github.com/kubohiroya/tmpose-kamishibai/commit/79457815f5c89b181b1a879a079a4d6a72d405ed)\
-Schema SHA-256: `e36c1130a4e1983728106b351795e2e605e4a665b4b92ca17acad539e9d8fee7`
+Schema固定commit: [`283daad`](https://github.com/kubohiroya/tmpose-kamishibai/commit/283daadeffa5d11ab4510daa66f60168277dafea)\
+Schema SHA-256: `f519c033c68be61d71cc5dcba20a8434e23255ec0279fc0dc2d6408e7f014d7e`
 
 > **権威関係と配布状態:** 同一の上流完成commitに含まれる規範JSON Schema、表層仕様、
 > 適合実装・testを固定しています。Schemaはruntime実装から生成しません。公開アプリ、配布artifact、
@@ -15,7 +15,7 @@ Schema SHA-256: `e36c1130a4e1983728106b351795e2e605e4a665b4b92ca17acad539e9d8fee
 
 ## このリファレンスについて
 
-この文書は、固定snapshotの[DSL 4.0 JSON Schema](https://github.com/kubohiroya/tmpose-kamishibai/blob/79457815f5c89b181b1a879a079a4d6a72d405ed/schema/dsl-4.schema.json)とCC BY-SA 4.0の日本語Annotationから
+この文書は、固定snapshotの[DSL 4.0 JSON Schema](https://github.com/kubohiroya/tmpose-kamishibai/blob/283daadeffa5d11ab4510daa66f60168277dafea/schema/dsl-4.schema.json)とCC BY-SA 4.0の日本語Annotationから
 決定的に生成しています。型、必須性、既定値、数値範囲、列挙値、patternはSchemaから取得し、説明、掲載順、
 注意事項、例はAnnotationで管理します。Schemaと生成物が異なる場合はSchemaを優先します。
 
@@ -23,8 +23,8 @@ Schema SHA-256: `e36c1130a4e1983728106b351795e2e605e4a665b4b92ca17acad539e9d8fee
 
 - 上流repository: [`kubohiroya/tmpose-kamishibai`](https://github.com/kubohiroya/tmpose-kamishibai)
 - Schema path: `schema/dsl-4.schema.json`
-- 上流commit日時: `2026-08-08T00:51:31+09:00`
-- 掲載範囲: トップレベル12 field、action 19種類、Annotation 71項目
+- 上流commit日時: `2026-08-08T11:21:11+09:00`
+- 掲載範囲: トップレベル12 field、action 19種類、Annotation 72項目
 - 更新方法: `pnpm docs:dsl4:sync -- --repository ../tmpose-kamishibai --commit <commit>`
 - 差分確認: `pnpm docs:dsl4:check`
 
@@ -278,7 +278,7 @@ opening:
 
 ## asset種別
 
-assetは短縮文字列または名前付きobjectで記述します。名前付きobjectでは、project内asset名、相対file、integrity付きremote sourceのいずれか一つを選びます。
+assetは短縮文字列または名前付きobjectで記述します。名前付きobjectでは、project内asset名、相対file、または明示的なremote sourceのいずれか一つを選びます。
 
 ### assetで選べる形式
 
@@ -296,7 +296,7 @@ Schema位置: `#/$defs/asset`
 | 形式6 | いずれか一つ | object または object（`namedImage`） | 未知field不可 |
 
 - 短縮形式はproject内に同名のassetがある場合に使います。
-- remote sourceはHTTPS URLだけでなくSHA-256、content type、byte sizeを固定します。
+- poseModelは通常のHTTPS TMPose directory URLを指定できます。それ以外のremote sourceと検証付きremote poseはSHA-256、content type、byte sizeを固定します。
 
 Schemaで検証できる値の例:
 
@@ -396,7 +396,7 @@ file: hero-happy.svg
 
 ### 名前付きポーズモデル
 
-ポーズモデルは相対fileまたは固定remote sourceで指定し、project内の表示名だけを使う形式はありません。
+ポーズモデルは埋め込む相対file、通常のTMPose directory URL、または検証付きremote archiveで指定します。project内の表示名だけを使う形式はありません。
 
 Schema位置: `#/$defs/namedPoseModel`
 
@@ -404,7 +404,7 @@ Schema位置: `#/$defs/namedPoseModel`
 | --- | --- | --- | --- |
 | `kind` | 必須 | 固定値 `poseModel` | — |
 | `file` | 任意 | 文字列（`filePath`） | 1文字以上、pattern `^(?!/)(?![A-Za-z]:[\\/])(?![A-Za-z][A-Za-z0-9+.-]*:)[^\\\u0000]+$` |
-| `source` | 任意 | object（`remoteAssetSource`） | 未知field不可 |
+| `source` | 任意 | object（`remotePoseModelSource`） | 未知field不可 |
 | `delivery` | 任意 | `embedded` / `remote`（`deliveryPolicy`） | 既定値 `embedded` |
 | `loading` | 任意 | `eager` / `lazy`（`loadingPolicy`） | 既定値 `eager` |
 | `retention` | 任意 | `scene` / `story`（`retentionPolicy`） | — |
@@ -414,11 +414,9 @@ Schemaで検証できる値の例:
 ```yaml
 kind: poseModel
 delivery: remote
+loading: lazy
 source:
-  url: https://example.com/model.json
-  integrity: sha256-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
-  contentType: application/json
-  size: 4096
+  url: https://example.com/models/rescue/
 ```
 
 ### 名前付きUI画像
@@ -940,7 +938,7 @@ story
 
 ### 配布policy
 
-成果物へ埋め込むembeddedと、integrity付きURLを使うremoteから選びます。
+成果物へ埋め込むembeddedと、明示的にURLから取得するremoteから選びます。
 
 Schema位置: `#/$defs/deliveryPolicy`
 
@@ -974,6 +972,25 @@ url: https://example.com/audio.ogg
 integrity: sha256-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 contentType: audio/ogg
 size: 1024
+```
+
+### remote pose model source
+
+通常のTMPose directoryはHTTPS URLだけで参照できます。検証付きremote archiveにする場合はintegrity、content type、byte sizeを三つとも指定します。
+
+Schema位置: `#/$defs/remotePoseModelSource`
+
+| field／形式 | 必須性 | 型 | 既定値・制約 |
+| --- | --- | --- | --- |
+| `url` | 必須 | 文字列 | pattern `^https://[^\s]+$` |
+| `integrity` | 任意 | 文字列 | pattern `^sha256-[0-9a-f]{64}$` |
+| `contentType` | 任意 | 文字列 | pattern `^[a-z0-9][a-z0-9!#$&^_.+-]*/[a-z0-9][a-z0-9!#$&^_.+-]*$` |
+| `size` | 任意 | 整数 | 1以上 |
+
+Schemaで検証できる値の例:
+
+```yaml
+url: https://example.com/models/rescue/
 ```
 
 ### key code

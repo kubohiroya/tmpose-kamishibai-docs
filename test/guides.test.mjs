@@ -102,8 +102,8 @@ test('keeps the completed DSL 4.0 guide separate from the production 3.2 manual'
   assert.match(dsl4SchemaReference, /DSL 4\.0実装完成版/u);
   assert.match(dsl4SchemaReference, /権威関係と配布状態/u);
   assert.match(dsl4SchemaReference, /Schemaはruntime実装から生成しません/u);
-  assert.match(dsl4SchemaReference, /Schema固定commit: \[`7945781`\]/u);
-  assert.match(dsl4SchemaReference, /トップレベル12 field、action 19種類、Annotation 71項目/u);
+  assert.match(dsl4SchemaReference, /Schema固定commit: \[`283daad`\]/u);
+  assert.match(dsl4SchemaReference, /トップレベル12 field、action 19種類、Annotation 72項目/u);
   assert.doesNotMatch(dslManual, /kamishibai: '4\.0'/u);
   assert.doesNotMatch(dsl4AuthorGuide, /DSL 3\.[12]|kamishibai=3\.[12]/u);
   assert.doesNotMatch(dsl4SchemaReference, /DSL 3\.[12]|kamishibai=3\.[12]/u);
@@ -269,8 +269,10 @@ test('documents the DSL 3.2 to 4.0 converter as a dedicated migration guide', ()
   assert.match(dsl4ConversionGuide, /--input source\.txt/u);
   assert.match(dsl4ConversionGuide, /--output story\.k4\.yml/u);
   assert.match(dsl4ConversionGuide, /--pose-models pose-models\.json/u);
+  assert.match(dsl4ConversionGuide, /--max-source-bytes 262144/u);
   assert.match(dsl4ConversionGuide, /入力と同じpathは指定できません/u);
-  assert.match(dsl4ConversionGuide, /URLとproject内のlocal `poseModel` asset/u);
+  assert.match(dsl4ConversionGuide, /`TMPoseURL`は既定でlazy remote poseModelへ変換/u);
+  assert.match(dsl4ConversionGuide, /model directoryをproject内へ取得/u);
   assert.match(dsl4ConversionGuide, /poseInputToChangeScene`を生成しません/u);
   assert.match(dsl4ConversionGuide, /fullConfidenceHoldSeconds = 10 \/ poseCharge/u);
   assert.match(dsl4ConversionGuide, /`delivery: remote`/u);
