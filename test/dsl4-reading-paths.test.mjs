@@ -43,9 +43,12 @@ test('offers purpose-specific progressive reading paths on the DSL 4.0 top page'
 });
 
 test('connects overview, authoring, reference, and implementation documents without prerequisite jumps', () => {
-  assert.match(adultOverview, /## 4\.0を理解するための全体像/u);
+  assert.match(adultOverview, /## まずここだけ読む/u);
   assert.match(adultOverview, /## 人・AI・プログラムの役割/u);
   assert.match(adultOverview, /## 制作のサイクル/u);
+  assert.match(adultOverview, /## 安全に参加するために/u);
+  assert.match(adultOverview, /## ここまで読んだら/u);
+  assert.match(adultOverview, /## 仕組みを詳しく知る/u);
   assert.match(adultOverview, /この文書を読み終えた時点で、4\.0の概要把握は完了/u);
   assert.match(adultOverview, /アプリ・教材・ツールチェインガイド/u);
   assert.doesNotMatch(childOverview, /アプリ・教材・ツールチェインガイド/u);
@@ -65,6 +68,24 @@ test('connects overview, authoring, reference, and implementation documents with
   assert.match(internalSpecification, /アプリ・教材・ツールチェインガイド/u);
   assert.match(extensionGuide, /内部仕様書/u);
   assert.match(diagnosticsDesign, /機能拡張・プラットフォーム統合ガイド/u);
+});
+
+test('keeps implementation terms in the optional second layer of the adult overview', () => {
+  const secondLayerStart = adultOverview.indexOf('## 仕組みを詳しく知る');
+  assert.ok(secondLayerStart > 0);
+
+  const firstLayer = adultOverview.slice(0, secondLayerStart);
+  const secondLayer = adultOverview.slice(secondLayerStart);
+
+  assert.match(firstLayer, /何を作れるか/u);
+  assert.match(firstLayer, /人が目的・物語・安全条件を決め/u);
+  assert.match(firstLayer, /カメラを使わない作品も正式な選択肢/u);
+  assert.match(firstLayer, /キーやタッチによる代替入力/u);
+  assert.doesNotMatch(firstLayer, /candidate|generation|ソースフロントエンド/u);
+
+  assert.match(secondLayer, /候補（candidate）/u);
+  assert.match(secondLayer, /世代（generation）/u);
+  assert.match(secondLayer, /ソースフロントエンド/u);
 });
 
 test('uses focused rendered diagrams for relationships that span multiple stages or owners', () => {
