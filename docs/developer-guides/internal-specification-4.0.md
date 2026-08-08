@@ -2,6 +2,12 @@
 
 Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)で提供します。
 
+文書状態: 固定実装基準を説明する内部仕様（正式リリース済みの意味ではない）\
+調査基準: tmpose-kamishibai `7945781`、2026年8月8日
+
+> **配布状態との区別:** 2026年8月8日時点で`v4.0.0`は正式リリースされていません。
+> 本書は固定コミットの内部構造を説明し、公開プレイヤーや配布物で利用できることを保証しません。
+
 この文書は、TMPose紙芝居4.0のsource frontend、実行中間表現、runtime、platform adapter、
 preview transactionの責務境界を、完成実装に対応させて記録します。作者向けのYAML構文は
 [紙芝居DSL 4.0 台本作成ガイド](../dsl-author-guides/dsl-4.0-author-guide.md)、fieldの型と制約は

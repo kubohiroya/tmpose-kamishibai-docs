@@ -2,6 +2,12 @@
 
 Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)で提供します。
 
+文書状態: 固定実装基準を説明する統合ガイド（正式リリース済みの意味ではない）\
+調査基準: tmpose-kamishibai `7945781`、2026年8月8日
+
+> **配布状態との区別:** 2026年8月8日時点で`v4.0.0`は正式リリースされていません。
+> 本書の統合境界は固定実装を説明し、公開プレイヤーや配布物で利用できることを保証しません。
+
 このガイドは、TMPose紙芝居4.0のruntime capability、platform adapter、外部packageとの統合境界を
 保守する開発者向けの資料です。実装基準は`kubohiroya/tmpose-kamishibai`のcommit
 [`79457815f5c89b181b1a879a079a4d6a72d405ed`](https://github.com/kubohiroya/tmpose-kamishibai/tree/79457815f5c89b181b1a879a079a4d6a72d405ed)

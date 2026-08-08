@@ -2,6 +2,12 @@
 
 Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)で提供します。
 
+文書状態: 固定実装基準を説明する設計レビュー（正式リリース済みの意味ではない）\
+調査基準: tmpose-kamishibai `7945781`、2026年8月8日
+
+> **配布状態との区別:** 2026年8月8日時点で`v4.0.0`は正式リリースされていません。
+> 本書は固定コミットの失敗経路を説明し、公開プレイヤーや配布物で利用できることを保証しません。
+
 この文書は、DSL 4.0のYAML読込からproduction実行まで、失敗をどこで分類し、どの状態をcommitせず、
 どのresourceを停止・解放するかを実装からレビューできるようにまとめたものです。対象となる完成実装は
 `kubohiroya/tmpose-kamishibai`のcommit

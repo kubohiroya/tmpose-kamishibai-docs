@@ -4,33 +4,34 @@ Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecom
 
 対象: DSL 4.0の台本作者、教材作成者、授業設計者、開発者\
 対象仕様: `kamishibai: '4.0'`\
-文書状態: DSL 4.0実装完成版の台本作成ガイド\
+文書状態: 固定実装基準を説明する台本作成ガイド（正式リリースの操作資料ではない）\
 調査基準: tmpose-kamishibai `7945781`、2026年8月8日
 
-> **配布状態との区別:** DSL 4.0の実装は完成していますが、公開アプリ、配布artifact、feature flagで
-> DSL 4.0が有効かは利用するreleaseごとに確認してください。
+> **配布状態との区別:** 2026年8月8日時点で、GitHub Releasesの最新正式リリースは`v3.2.3`で、
+> `v4.0.0`は未公開です。このガイドの記述例は固定実装を基準にしており、公開アプリ、配布物、
+> フィーチャーフラグでDSL 4.0が利用可能だとは保証しません。
 
 このガイドと[紙芝居DSL 4.0 Schemaリファレンス](dsl-4.0-schema-reference.md)は、上記の完成commitを
 調査基準としています。field、型、必須性、既定値、action引数はSchemaリファレンスで確認し、
 Source Graph、preview、build、runtimeの利用可否は対象releaseの機能一覧とfeature flagで確認してください。
 
-この完成commitでは、規範JSON Schema、表層仕様、適合実装・testを同一revisionとして固定しています。
+この固定commitでは、規範JSON Schema、表層仕様、適合実装・testを同一revisionとして固定しています。
 Schemaはruntime実装から生成するものではありません。
 
-この文書は、完成したDSL 4.0表層仕様と作者向けtoolchainを、台本作者が読める形で説明します。
+この文書は、固定したDSL 4.0表層仕様と作者向けツールチェインを、台本作者が読める形で説明します。
 
 ## このガイドの読み進め方
 
 初めて台本を書く場合は、次の順序で進めてください。Schemaリファレンスは最初から通読せず、手順の途中で
 fieldやactionの詳細が必要になったときに参照します。
 
-| 段階 | 本書で読む範囲 | 到達点 |
-|---|---|---|
-| 1 | DSL 4.0の記法、最小台本 | 一つのsceneを読める |
-| 2 | Project配置、YAML規則、名前、asset、Actor | sourceと素材の対応を作れる |
-| 3 | 表紙、入力、style、scene、action | 短い作品を書ける |
-| 4 | stableId、Web Preview、総合サンプル | 変更を安全に確認できる |
-| 5 | 診断、チェックリスト | validateして配布前確認ができる |
+| 段階 | 本書で読む範囲                            | 到達点                         |
+| ---- | ----------------------------------------- | ------------------------------ |
+| 1    | DSL 4.0の記法、最小台本                   | 一つのsceneを読める            |
+| 2    | Project配置、YAML規則、名前、asset、Actor | sourceと素材の対応を作れる     |
+| 3    | 表紙、入力、style、scene、action          | 短い作品を書ける               |
+| 4    | stableId、Web Preview、総合サンプル       | 変更を安全に確認できる         |
+| 5    | 診断、チェックリスト                      | validateして配布前確認ができる |
 
 <figure class="concept-flow"><figcaption>台本を段階的に完成させる順序</figcaption><div class="concept-flow__track"><span>最小台本</span><b aria-hidden="true">→</b><span>projectとasset</span><b aria-hidden="true">→</b><span>sceneとaction</span><b aria-hidden="true">→</b><span>validate</span><b aria-hidden="true">→</b><span>preview</span><b aria-hidden="true">→</b><span>build</span></div><p class="concept-flow__note"><strong>診断が出た場合:</strong> sceneとactionへ戻り、source位置を確認してから再度validateします。</p></figure>
 
@@ -236,20 +237,20 @@ feature flagがOFFの場合は単一source経路を維持します。
 compose後の台本で使用できるトップレベルキーは次のものだけです。表にないキーは警告ではなくエラーに
 なります。`include`は前節のSource Graph処理だけが受理し、JSON Schemaのトップレベルfieldではありません。
 
-| キー              | 必須 | 役割                                           |
-| ----------------- | ---- | ---------------------------------------------- |
-| `kamishibai`      | 必須 | 文字列`'4.0'`を指定する                        |
+| キー              | 必須 | 役割                                              |
+| ----------------- | ---- | ------------------------------------------------- |
+| `kamishibai`      | 必須 | 文字列`'4.0'`を指定する                           |
 | `assets`          | 任意 | 背景、音、costume、ポーズモデル、UI画像を登録する |
-| `actors`          | 任意 | アクターと初期コスチュームを対応付ける         |
-| `cover`           | 任意 | 表紙の背景とBGMを指定する                      |
-| `textStyles`      | 任意 | SVG Textの名前付きスタイルを定義する           |
-| `speechStyles`    | 任意 | say／thinkの名前付き文字送りstyleを定義する    |
-| `variables`       | 任意 | 物語で使う変数の初期値を定義する               |
-| `loading`         | 任意 | 読み込み中の背景とコスチューム列を指定する     |
-| `poseRecognition` | 任意 | ポーズ認識、preview表示、任意の操作UIを設定する |
-| `controls`        | 任意 | 実行環境ごとの操作キーを定義する               |
-| `branches`        | 任意 | 順序付きの条件分岐を登録する                   |
-| `scenes`          | 必須 | 一つ以上のシーンとアクションを記述する         |
+| `actors`          | 任意 | アクターと初期コスチュームを対応付ける            |
+| `cover`           | 任意 | 表紙の背景とBGMを指定する                         |
+| `textStyles`      | 任意 | SVG Textの名前付きスタイルを定義する              |
+| `speechStyles`    | 任意 | say／thinkの名前付き文字送りstyleを定義する       |
+| `variables`       | 任意 | 物語で使う変数の初期値を定義する                  |
+| `loading`         | 任意 | 読み込み中の背景とコスチューム列を指定する        |
+| `poseRecognition` | 任意 | ポーズ認識、preview表示、任意の操作UIを設定する   |
+| `controls`        | 任意 | 実行環境ごとの操作キーを定義する                  |
+| `branches`        | 任意 | 順序付きの条件分岐を登録する                      |
+| `scenes`          | 必須 | 一つ以上のシーンとアクションを記述する            |
 
 推奨する並び順は表の順番です。YAML mappingの字下げには空白を使用し、タブは使いません。
 
@@ -799,15 +800,15 @@ Global actionはアクター名を付けずに記述します。
 
 Actor actionは`ActorID.command`をキーにします。
 
-| action                    | 必須引数                                  | 役割                                         |
-| ------------------------- | ----------------------------------------- | -------------------------------------------- |
-| `Actor.show`              | `skin`、`x`、`y`、`scale`                 | コスチューム、位置、倍率を指定して表示する   |
-| `Actor.setTransparency`   | 0〜100または`from`、`to`、`seconds`       | 幽霊効果を即時設定または線形に変化させる     |
-| `Actor.moveTo`            | `x`、`y`、`seconds`                       | 任意のeasingで指定位置へ移動する              |
-| `Actor.say`／`Actor.think` | `text`と、`seconds`／`waitFor`の一方以上 | セリフまたは思考を表示する                   |
-| `Actor.setSkin`           | コスチュームID                            | コスチュームを変更する                       |
-| `Actor.setText`           | `text`、`style`                           | SVG Textを更新する                           |
-| `Actor.pose`              | `steps`                                   | ポーズを順に認識してcostumeと音を適用する    |
+| action                     | 必須引数                                 | 役割                                       |
+| -------------------------- | ---------------------------------------- | ------------------------------------------ |
+| `Actor.show`               | `skin`、`x`、`y`、`scale`                | コスチューム、位置、倍率を指定して表示する |
+| `Actor.setTransparency`    | 0〜100または`from`、`to`、`seconds`      | 幽霊効果を即時設定または線形に変化させる   |
+| `Actor.moveTo`             | `x`、`y`、`seconds`                      | 任意のeasingで指定位置へ移動する           |
+| `Actor.say`／`Actor.think` | `text`と、`seconds`／`waitFor`の一方以上 | セリフまたは思考を表示する                 |
+| `Actor.setSkin`            | コスチュームID                           | コスチュームを変更する                     |
+| `Actor.setText`            | `text`、`style`                          | SVG Textを更新する                         |
+| `Actor.pose`               | `steps`                                  | ポーズを順に認識してcostumeと音を適用する  |
 
 ### 表示する
 
@@ -1179,21 +1180,21 @@ scenes:
 DSL 4.0のsource frontendは、YAMLを読み込んだあと、構造と参照関係の検証が成功するまでアセット準備や
 アクション実行を始めません。診断にはcode、severity、source ID、行・列、Story Pathが含まれます。
 
-| code                          | 主な意味                                     |
-| ----------------------------- | -------------------------------------------- |
-| `K4-YAML-*`                   | YAML構文または禁止機能の使用                 |
-| `K4-VERSION-001`              | `kamishibai`が文字列`'4.0'`ではない          |
-| `K4-SCHEMA-001`               | 型、必須field、構造がschemaと一致しない      |
-| `K4-SCHEMA-UNKNOWN-KEY`       | schemaにないキーを使用した                   |
-| `K4-ID-INVALID` / `K4-ID-001` | 識別子の文字規則またはUnicode NFC違反        |
-| `K4-REF-001`                  | 参照先が未定義                               |
-| `K4-REF-002`                  | 参照先アセットの`kind`が用途と一致しない     |
-| `K4-REF-003`                  | コスチュームの`target`がアクターと一致しない |
-| `K4-ASSET-001`                | `file`が安全なローカル相対pathではない       |
-| `K4-BRANCH-001`               | 分岐の末尾が`else`ではない                   |
-| `K4-STABLE-ID-001`            | `stableId`が文書内で重複している             |
-| `K4-KEY-UNSUPPORTED`          | 対応外のキーやmodifierを指定した             |
-| `K4-KEY-001`                  | navigation keymapと作品内キー入力が衝突した  |
+| code                          | 主な意味                                      |
+| ----------------------------- | --------------------------------------------- |
+| `K4-YAML-*`                   | YAML構文または禁止機能の使用                  |
+| `K4-VERSION-001`              | `kamishibai`が文字列`'4.0'`ではない           |
+| `K4-SCHEMA-001`               | 型、必須field、構造がschemaと一致しない       |
+| `K4-SCHEMA-UNKNOWN-KEY`       | schemaにないキーを使用した                    |
+| `K4-ID-INVALID` / `K4-ID-001` | 識別子の文字規則またはUnicode NFC違反         |
+| `K4-REF-001`                  | 参照先が未定義                                |
+| `K4-REF-002`                  | 参照先アセットの`kind`が用途と一致しない      |
+| `K4-REF-003`                  | コスチュームの`target`がアクターと一致しない  |
+| `K4-ASSET-001`                | `file`が安全なローカル相対pathではない        |
+| `K4-BRANCH-001`               | 分岐の末尾が`else`ではない                    |
+| `K4-STABLE-ID-001`            | `stableId`が文書内で重複している              |
+| `K4-KEY-UNSUPPORTED`          | 対応外のキーやmodifierを指定した              |
+| `K4-KEY-001`                  | navigation keymapと作品内キー入力が衝突した   |
 | `K4-INCLUDE-CYCLE`            | include graphに循環がある                     |
 | `K4-INCLUDE-LIMIT-001`        | source件数、合計byte数、include深度の上限超過 |
 | `K4-SOURCE-SIZE-001`          | source一件のbyte数が上限を超えた              |

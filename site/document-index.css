@@ -260,6 +260,37 @@ main {
   max-width: 76ch;
 }
 
+.release-status {
+  max-width: 88ch;
+  padding: clamp(20px, 4vw, 30px);
+  border: 1px solid color-mix(in srgb, #a16207 36%, white);
+  border-left: 8px solid #a16207;
+  border-radius: 10px;
+  background: #fffbeb;
+}
+
+.release-status__eyebrow {
+  margin: 0;
+  color: #854d0e;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.release-status h2 {
+  margin: 0.3rem 0 0.7rem;
+}
+
+.release-status p:not(.release-status__eyebrow) {
+  margin: 0.6rem 0 0;
+  line-height: 1.75;
+}
+
+.release-status a {
+  color: #713f12;
+  font-weight: 750;
+}
+
 .reading-paths__intro {
   max-width: 82ch;
   line-height: 1.75;

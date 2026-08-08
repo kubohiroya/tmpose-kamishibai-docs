@@ -2,6 +2,12 @@
 
 Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)で提供します。
 
+文書状態: 固定実装基準を説明する保守資料（正式リリース済みの意味ではない）\
+調査基準: tmpose-kamishibai `7945781`、2026年8月8日
+
+> **配布状態との区別:** 2026年8月8日時点で`v4.0.0`は正式リリースされていません。
+> 本書のリリース手順は、公開済み4.0配布物の操作説明ではなく、正式公開までに行う保守作業を含みます。
+
 このガイドは、TMPose紙芝居のDSL 4.0 source frontend、runtime、platform adapter、preview、build、
 releaseを変更・検証・公開するソフトウェア開発者向けの作業資料です。対象となる実装基準は
 `kubohiroya/tmpose-kamishibai`のcommit

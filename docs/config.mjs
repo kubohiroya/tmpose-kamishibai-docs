@@ -1,3 +1,10 @@
+export const dsl4PublicationStatus = Object.freeze({
+  verifiedOn: '2026-08-08',
+  implementationCommit: '79457815f5c89b181b1a879a079a4d6a72d405ed',
+  latestPublishedRelease: 'v3.2.3',
+  officialDsl4Release: null,
+});
+
 export const documentCollections = [
   {
     id: 'user-guides',

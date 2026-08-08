@@ -4,11 +4,12 @@ Copyright © 2026 Hiroya Kubo. この文書は[CC BY-SA 4.0](https://creativecom
 
 対象: DSL 3.1／3.2の既存台本をDSL 4.0へ移行する方\
 対象コマンド: `tmpose-kamishibai convert-dsl4`\
-文書状態: DSL 4.0実装完成版の変換ガイド\
+文書状態: 固定実装基準を説明する変換ガイド（正式リリースの操作資料ではない）\
 調査基準: tmpose-kamishibai `82dc812`、2026年8月8日
 
-> **配布状態との区別:** `convert-dsl4`を含むpackage releaseを使用してください。利用中のpackageで
-> `pnpm exec tmpose-kamishibai --help`を実行し、コマンド一覧に`convert-dsl4`があることを確認できます。
+> **配布状態との区別:** 2026年8月8日時点で`v4.0.0`は正式リリースされていません。
+> `convert-dsl4`を含むpackage releaseを使用し、利用中のpackageで`pnpm exec tmpose-kamishibai --help`を
+> 実行して、コマンド一覧に`convert-dsl4`があることを確認してください。
 
 `convert-dsl4`は、行形式のDSL 3.2台本を、DSL 4.0のYAML台本へ明示的に変換するone-shot
 commandです。DSL 3.1は3.2互換grammarとして読み込み、warningを出します。

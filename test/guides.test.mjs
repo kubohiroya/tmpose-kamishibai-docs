@@ -70,7 +70,8 @@ const theme = readFileSync(new URL('../docs/general-theme.css', import.meta.url)
 
 test('keeps the completed DSL 4.0 guide separate from the production 3.2 manual', () => {
   assert.match(dslManual, /対象アプリ: tmpose-kamishibai 3\.2\.x/u);
-  assert.match(dsl4AuthorGuide, /DSL 4\.0実装完成版/u);
+  assert.match(dsl4AuthorGuide, /固定実装基準を説明する台本作成ガイド/u);
+  assert.match(dsl4AuthorGuide, /v4\.0\.0`は未公開/u);
   assert.match(dsl4AuthorGuide, /Schemaはruntime実装から生成するものではありません/u);
   assert.match(dsl4AuthorGuide, /kamishibai: '4\.0'/u);
   assert.match(dsl4AuthorGuide, /\.kamishibai\.yaml/u);
@@ -99,7 +100,8 @@ test('keeps the completed DSL 4.0 guide separate from the production 3.2 manual'
     /端末固有の物理device IDは台本、StoryDocument、`variables`へ保存しません/u,
   );
   assert.match(dsl4AuthorGuide, /前sceneの値を持ち越しません/u);
-  assert.match(dsl4SchemaReference, /DSL 4\.0実装完成版/u);
+  assert.match(dsl4SchemaReference, /固定実装基準を説明するSchemaリファレンス/u);
+  assert.match(dsl4SchemaReference, /v4\.0\.0`は正式リリースされていません/u);
   assert.match(dsl4SchemaReference, /権威関係と配布状態/u);
   assert.match(dsl4SchemaReference, /Schemaはruntime実装から生成しません/u);
   assert.match(dsl4SchemaReference, /Schema固定commit: \[`7945781`\]/u);
